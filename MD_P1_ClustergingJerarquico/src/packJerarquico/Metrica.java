@@ -49,4 +49,13 @@ private static Metrica myMetrica = null;
 		return (float) this.sumValues(aux);
 	}
 	
+	public float calculateMinchowski(float[] coordinate1, float[] coordinate2) {
+		
+		float[]aux = new float[coordinate1.length];
+		
+		for (int i = 0; i < coordinate1.length ; i++)
+			aux[i] = (float) Math.pow(coordinate1[i] + coordinate2[i], 1);
+				
+		return (float) Math.sqrt(this.sumValues(aux));
+	}
 }
