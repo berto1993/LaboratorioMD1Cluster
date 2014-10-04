@@ -1,6 +1,7 @@
 package packJerarquico;
 
-public class Instance {
+public class Instance
+{
 
 	public int getSize() {
 		// TODO Auto-generated method stub
