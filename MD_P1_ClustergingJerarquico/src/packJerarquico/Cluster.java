@@ -22,11 +22,18 @@ public class Cluster
 		middle = null;
 	}
 	
-	public LinkedList<Instance> getInstances() {
+	public LinkedList<Instance> getInstances()
+	{
 		return instances;
 	}
+	
+	public int getTamano()
+	{
+		return instances.size();
+	}
 
-	public float[] getMiddle() {
+	public float[] getMiddle()
+	{
 		return middle;
 	}
 
@@ -92,8 +99,7 @@ public class Cluster
 		
 		for (int i = 0; i < middle.length; i++ )
 		{
-		middle[i] = 0;
+			middle[i] = 0;
 		}
-		
 	}
 }

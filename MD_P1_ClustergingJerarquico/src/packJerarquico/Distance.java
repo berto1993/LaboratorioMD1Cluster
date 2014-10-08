@@ -13,13 +13,16 @@ public class Distance
 		distance = 0;
 	}
 	
-	public float getDistance() {
+	public float getDistance()
+	{
 		return distance;
 	}
-	public Cluster getCluster1() {
+	public Cluster getCluster1()
+	{
 		return cluster1;
 	}
-	public Cluster getCluster2() {
+	public Cluster getCluster2()
+	{
 		return cluster2;
 	}
 	

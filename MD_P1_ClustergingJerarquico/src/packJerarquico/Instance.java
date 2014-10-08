@@ -2,19 +2,24 @@ package packJerarquico;
 
 public class Instance
 {
-
-	public int getSize() {
-		// TODO Auto-generated method stub
+	
+	public int getSize()
+	{
 		return 0;
 	}
 
-	public float getAttribute(int i) {
-		// TODO Auto-generated method stub
+	public float getAttribute(int i)
+	{
 		return 0;
 	}
-
-	public int getAttributeSize() {
-		// TODO Auto-generated method stub
+	
+	public float[] getAttributes()
+	{
+		return 0;
+	}
+	
+	public int getAttributeSize()
+	{
 		return 0;
 	}
 }
