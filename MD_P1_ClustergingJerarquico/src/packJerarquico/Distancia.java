@@ -26,7 +26,6 @@ public class Distancia
 		return this.calculateMetric(cluster1.getMiddle(), cluster2.getMiddle(),typeM);
 	}
 	
-	
 	// Si no lo pasamos
 	// como array de coordenadas
 	// no podemos hacer un metodo para todo
