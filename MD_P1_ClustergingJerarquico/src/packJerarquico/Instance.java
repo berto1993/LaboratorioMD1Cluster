@@ -4,9 +4,18 @@ public class Instance
 {
 	private float[] atributes;
 	
-	public Instance(float pX, float pY)
+	public Instance(String[] att, int[] numeric)
 	{
-	
+		// Utilizamos numeric para evitar
+		// los atributos no numericos, en numeric
+		// tenemos la posición de los atributos que
+		// nos interesan guardadas
+		atributes = new float[numeric.length];
+		for (int i = 0; i < numeric.length; i++)
+			// Convierte el numero almacenado
+			// en el String y lo añade
+			atributes[i] = Float.valueOf(att[numeric[i]]);
+			
 	}
 	
 
