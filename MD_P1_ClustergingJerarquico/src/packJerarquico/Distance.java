@@ -26,14 +26,17 @@ public class Distance
 		return cluster2;
 	}
 	
-	public calculateDistance(Enum<Distancia> typeD, Enum<Metrica>typeM)
-	{
+	public void calculateDistance(int pDistancia, int pMetrica , int k)
+	{	//	1 - Simple
+		//	2 - Complete
+		//	3 - Average
+
 		
-		if (typeD)
-			distance = Distancia.getDistancia().calculateAverage(cluster1, cluster2, typeM);
-		if (typeD)
-			distance = Distancia.getDistancia().calculateSingle(cluster1, cluster2, typeM);	
-		if (typeD)
-			distance = Distancia.getDistancia().calculateComplete(cluster1, cluster2, typeM);
+		if (pDistancia == 3)
+			distance = Distancia.getDistancia().calculateAverage(cluster1, cluster2, pMetrica , k);
+		if (pDistancia == 1)
+			distance = Distancia.getDistancia().calculateSingle(cluster1, cluster2, pMetrica , k);	
+		if (pDistancia == 2)
+			distance = Distancia.getDistancia().calculateComplete(cluster1, cluster2, pMetrica , k);
 	}
 }

@@ -49,7 +49,7 @@ public class Cluster
 			Iterator<Instance> it = instances.iterator();
 			
 			Instance aux = it.next();
-			middle = new float[aux.getAttributeSize()];
+			middle = new float[aux.getAtributeSize()];
 			this.initializeMiddle();
 			this.sumMiddleValues(aux);
 			
@@ -86,7 +86,7 @@ public class Cluster
 		// la una instancia
 		for (int i = 0 ; i < middle.length; i++)
 		{
-			middle[i] = middle[i] + aux.getAttribute(i);
+			middle[i] = middle[i] + aux.getAtribute(i);
 		}
 		
 	}

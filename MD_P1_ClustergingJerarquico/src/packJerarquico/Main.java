@@ -30,6 +30,7 @@ public class Main {
 		}
 		else
 			error();
+
 	}
 
 	private static int setK(String string) {

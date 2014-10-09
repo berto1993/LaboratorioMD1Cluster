@@ -2,37 +2,26 @@ package packJerarquico;
 
 public class Instance
 {
-	private float[] atributos;
-	private float x;
-	private float y;
+	private float[] atributes;
 	
 	public Instance(float pX, float pY)
 	{
-		this.x = pX;
-		this.y = pY;
-		this.atributos[0] = x;
-		this.atributos[1] = y;
+	
 	}
 	
-	//No entiendo la funcionalidad de este método
-	/*public int getSize()
-	{
-		return 0;
-	}*/
 
-	public float getAttribute(int i)
+	public float getAtribute(int i)
 	{
-		return this.atributos[i];
+		return this.atributes[i];
 	}
 	
-	public float[] getAttributes()
+	public float[] getAtributes()
 	{
-		return atributos;
+		return atributes;
 	}
 	
-	//De este tampoco :P
-	/*public int getAttributeSize()
+	public int getAtributeSize()
 	{
-		return 0;
-	}*/
+		return atributes.length;
+	}
 }

@@ -1,5 +1,7 @@
 package packJerarquico;
 
+import java.util.LinkedList;
+
 public class Distancia 
 {
 	private static Distancia myDistancia = null;
@@ -15,7 +17,7 @@ public class Distancia
 		return myDistancia;
 	}
 	
-	public float calculateAverage(Cluster cluster1,Cluster cluster2, Enum<Metrica>typeM)
+	public float calculateAverage(Cluster cluster1,Cluster cluster2, int pMetrica, int k)
 	{
 		if (cluster1.getMiddle() == null || cluster2.getMiddle() == null)
 		{
@@ -23,24 +25,34 @@ public class Distancia
 			cluster2.calculateMiddle();
 		}
 		
-		return this.calculateMetric(cluster1.getMiddle(), cluster2.getMiddle(),typeM);
+		return this.calculateMetric(cluster1.getMiddle(), cluster2.getMiddle(),pMetrica , k);
 	}
 	
 	// Si no lo pasamos
 	// como array de coordenadas
 	// no podemos hacer un metodo para todo
-	private float calculateMetric(float[] coordinate1, float[] coordinate2, Enum<Metrica>typeM)
+	private float calculateMetric(float[] coordinate1, float[] coordinate2, int pMetrica , int k)
 	{
-		if (typeM)
+		//	1 - Euclidean
+		//	2 - Manhattan
+		//	3 - Minkowski
+		switch (pMetrica) {
+		case 1:
 			return Metrica.getMetrica().calculateEuclidean(coordinate1, coordinate2);
-		if (typeM)
+		case 2:
 			return Metrica.getMetrica().calculateManhattan(coordinate1, coordinate2);
+		case 3:
+			return Metrica.getMetrica().calculateMikowski(coordinate1, coordinate2, k);
+		default:
+			System.out.println("No has indicado ninguna Metrica");
+			return 0;
+		}
 	}
 
-	public float calculateComplete(Cluster cluster1, Cluster cluster2,	Enum<Metrica> typeM)
+	public float calculateComplete(Cluster cluster1, Cluster cluster2,	int pMetrica , int k)
 	{
 		LinkedList<Instance> inslist1 = cluster1.getInstances();
-		LinkedList<Instance> inslist1 = cluster2.getInstances();
+		LinkedList<Instance> inslist2 = cluster2.getInstances();
 		float distanceMax = -1;
 		float distanceAux = -1;
 		
@@ -52,10 +64,10 @@ public class Distancia
 		{
 			for(int j=1;i<cluster2.getTamano();j++)
 			{
-				distanceAux = this.calculateMetric(inslist1(i).getAttributes(), inslist2(j).getAttributes(), typeM);
+				distanceAux = this.calculateMetric(inslist1.get(i).getAtributes(), inslist2.get(j).getAtributes() , k, pMetrica);
 				if(distanceAux > distanceMax)
 				{
-					distanceMax. = distanceAux;
+					distanceMax = distanceAux;
 				}
 			}
 		}
@@ -63,10 +75,10 @@ public class Distancia
 		return distanceMax;
 	}
 
-	public float calculateSingle(Cluster cluster1, Cluster cluster2,Enum<Metrica> typeM)
+	public float calculateSingle(Cluster cluster1, Cluster cluster2,int pMetrica , int k)
 	{
 		LinkedList<Instance> inslist1 = cluster1.getInstances();
-		LinkedList<Instance> inslist1 = cluster2.getInstances();
+		LinkedList<Instance> inslist2 = cluster2.getInstances();
 		float distanceMin = -1;
 		float distanceAux = -1;
 		
@@ -78,8 +90,8 @@ public class Distancia
 		{
 			for(int j=1;i<cluster2.getTamano();j++)
 			{
-				distanceAux = this.calculateMetric(inslist1(i).getAttributes(), inslist2(j).getAttributes(), typeM);
-				if(distanceAux < distanceMax)
+				distanceAux = this.calculateMetric(inslist1.get(i).getAtributes(), inslist2.get(j).getAtributes(), pMetrica ,k);
+				if(distanceAux < distanceMin)
 				{
 					distanceMin = distanceAux;
 				}
