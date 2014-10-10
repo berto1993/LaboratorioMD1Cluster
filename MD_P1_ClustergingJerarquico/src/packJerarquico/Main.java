@@ -1,5 +1,6 @@
 package packJerarquico;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -7,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) 
 	{
-		if (args.length == 4 || args.length == 5)
+		/*if (args.length == 4 || args.length == 5)
 		{	
 		//	0 - error	
 		//	1 - Top Down 
@@ -29,14 +30,27 @@ public class Main {
 			k = setK(args[4]);
 		if (top == 0 || distance == 0 || metric == 0)
 			error();
-		
+		else
+			startClustering(args[0] ,top, distance, metric, k);
 		}
 		else
-			error();
+			error();*/
+		LinkedList<Distance> list = new LinkedList<Distance>();
+		list.add(new Distance(null, null, 10));
+		list.add(new Distance(null, null, 1));
+		list.add(new Distance(null, null, 15));
+		Collections.sort(list);
+		for (int i = 0; i < list.size(); i++)
+			System.out.println(list.get(i).getDistance());
 		
-			
-		
+	}
 
+	private static void startClustering(String path, int top, int distance,
+			int metric, int k) 
+	{
+		if (top == 2)
+			ListOfIterations.getListOfIterations().aglomerativeClustering(path, distance, metric, k);
+		
 	}
 
 	private static int setK(String string) {

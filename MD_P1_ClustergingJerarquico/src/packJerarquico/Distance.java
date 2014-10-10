@@ -1,6 +1,6 @@
 package packJerarquico;
 
-public class Distance 
+public class Distance implements Comparable<Distance>
 {
 	
 	private Cluster cluster1, cluster2;
@@ -38,5 +38,10 @@ public class Distance
 			distance = Distancia.getDistancia().calculateSingle(cluster1, cluster2, pMetrica , k);	
 		if (pDistancia == 2)
 			distance = Distancia.getDistancia().calculateComplete(cluster1, cluster2, pMetrica , k);
+	}
+	
+	@Override
+	public int compareTo(Distance o) {
+		return Float.compare(distance, o.distance);
 	}
 }

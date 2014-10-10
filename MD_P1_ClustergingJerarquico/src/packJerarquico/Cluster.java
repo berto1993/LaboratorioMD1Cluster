@@ -14,12 +14,18 @@ public class Cluster
 	// Las instancias que pertenecen 
 	// al cluster
 	private LinkedList<Instance> instances;
-
-	public Cluster (int clusterName)
+	// Los dos cluster que forman el nuevo cluster
+	// En la primera iteración estan a null;
+	private Cluster leftParent = null;
+	private Cluster righttParent = null;
+	
+	public Cluster (int clusterName , Cluster pLeft, Cluster pRight)
 	{
 		number = clusterName;
 		instances = new LinkedList<Instance>();
 		middle = null;
+		leftParent = pLeft;
+		righttParent = pRight;
 	}
 	
 	public LinkedList<Instance> getInstances()

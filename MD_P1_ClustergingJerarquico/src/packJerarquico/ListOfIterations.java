@@ -6,7 +6,6 @@ public class ListOfIterations
 {
 	private static ListOfIterations myListOfIterations = null;
 	private LinkedList<Iteration> list;
-	private ListOfInstances instances;
 	
 	private ListOfIterations() {
 		list = new LinkedList<Iteration>();
@@ -19,7 +18,18 @@ public class ListOfIterations
 		return myListOfIterations;
 	}
 	
-	
+	public void aglomerativeClustering(String path, int distance, int metric, int k)
+	{
+		ListOfInstances.getListOfInstances().loadInstances(path);
+		int i = 0;
+		Iteration iterat;
+		
+		for (i = 1; iterat.getClusterSize; i++)
+		{
+			iterat = new Iteration ()
+		}
+		
+	}
 	
 
 }
