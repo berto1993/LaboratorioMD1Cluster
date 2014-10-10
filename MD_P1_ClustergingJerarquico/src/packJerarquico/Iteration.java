@@ -72,9 +72,7 @@ public class Iteration
 		Distance dist = distanceList.getLast();
 		ArrayList<Cluster> clustArray = (ArrayList<Cluster>) clusterList.clone();
 		clustArray.remove(dist.getCluster1());
-		clustArray.remove(dist.getCluster2());
-		
-		Cluster clust = new Cluster(clustN, dist.mergerInstances() , dist.getCluster1(), dist.getCluster2());
+		//clustArray.remove(dist.getCluster2());
 		
 		return clustArray;
 	}
