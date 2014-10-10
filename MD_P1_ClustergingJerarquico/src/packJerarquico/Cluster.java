@@ -19,14 +19,15 @@ public class Cluster
 	private Cluster leftParent = null;
 	private Cluster righttParent = null;
 	
-	public Cluster (int clusterName , Cluster pLeft, Cluster pRight)
+	public Cluster (int clusterName ,LinkedList<Instance> pList , Cluster pLeft, Cluster pRight)
 	{
 		number = clusterName;
-		instances = new LinkedList<Instance>();
+		instances = null;
 		middle = null;
 		leftParent = pLeft;
 		righttParent = pRight;
 	}
+	
 	
 	public LinkedList<Instance> getInstances()
 	{
@@ -43,6 +44,11 @@ public class Cluster
 		return middle;
 	}
 
+	public int getNumber()
+	{
+		return number;
+	}
+	
 	public void calculateMiddle()
 	{
 		// Existe un preproceso

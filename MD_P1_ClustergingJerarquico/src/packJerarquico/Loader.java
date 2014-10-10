@@ -22,7 +22,7 @@ public class Loader
 		return myLoader;
 	}
 	
-	public LinkedList<Instance> loadInstances(String path)
+	public Instance[] loadInstances(String path)
 	{
 		// Vamos a almacenar aqui
 		// las instancias cargadas
@@ -62,12 +62,13 @@ public class Loader
 			// nos deshacemos de la
 			//lista
 			numericosAux.clear();
-			
+			int i = 1;
 			while ((linea=br.readLine())!=null)
 			{
 				att = linea.split(",");
-				instan = new Instance(att, numeric);
+				instan = new Instance(i, att, numeric);
 				instances.addLast(instan);
+				i++;
 			}
 		}
 		catch(Exception e)
@@ -90,7 +91,9 @@ public class Loader
 				e2.printStackTrace();
 			}
 		}
-		return instances;
+		// lo convertimos a array para agilizar
+		// el acceso a los atributos
+		return instances.toArray(new Instance[instances.size()]);
 	}
 
 	private int[] numericExtractor(LinkedList<Boolean> numericosAux,

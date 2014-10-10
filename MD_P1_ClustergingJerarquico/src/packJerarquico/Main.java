@@ -35,13 +35,7 @@ public class Main {
 		}
 		else
 			error();*/
-		LinkedList<Distance> list = new LinkedList<Distance>();
-		list.add(new Distance(null, null, 10));
-		list.add(new Distance(null, null, 1));
-		list.add(new Distance(null, null, 15));
-		Collections.sort(list);
-		for (int i = 0; i < list.size(); i++)
-			System.out.println(list.get(i).getDistance());
+		
 		
 	}
 

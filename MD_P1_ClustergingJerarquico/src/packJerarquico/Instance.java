@@ -2,9 +2,10 @@ package packJerarquico;
 
 public class Instance
 {
+	private int name;
 	private float[] atributes;
 	
-	public Instance(String[] att, int[] numeric)
+	public Instance(int pName ,String[] att, int[] numeric)
 	{
 		// Utilizamos numeric para evitar
 		// los atributos no numericos, en numeric
@@ -18,6 +19,10 @@ public class Instance
 			
 	}
 	
+	public int getName()
+	{
+		return name;
+	}
 
 	public float getAtribute(int i)
 	{

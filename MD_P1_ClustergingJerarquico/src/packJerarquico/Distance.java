@@ -1,5 +1,7 @@
 package packJerarquico;
 
+import java.util.LinkedList;
+
 public class Distance implements Comparable<Distance>
 {
 	
@@ -43,5 +45,15 @@ public class Distance implements Comparable<Distance>
 	@Override
 	public int compareTo(Distance o) {
 		return Float.compare(distance, o.distance);
+	}
+
+	public LinkedList<Instance> mergerInstances() {
+		// Unimos las listas de instancias
+		// de ambos clusters (la usaremos para
+		// generar el cluster de union)
+		LinkedList<Instance> lisInstance = (LinkedList<Instance>) cluster1.getInstances().clone();
+		lisInstance.addAll(cluster2.getInstances());
+				
+		return lisInstance;
 	}
 }

@@ -10,10 +10,10 @@ public class Iteration
 	private ArrayList<Cluster> clusterList;
 	private LinkedList<Distance> distanceList;
 	
-	public Iteration (int pItName)
+	public Iteration (int pItName, ArrayList<Cluster> pClusterList)
 	{
 		iterationName = pItName;
-		clusterList = new ArrayList<Cluster>();
+		clusterList = pClusterList;
 		distanceList = new LinkedList<Distance>();
 	}
 	// Con este metodo calculamos las 
@@ -34,6 +34,36 @@ public class Iteration
 			}
 		}
 		Collections.sort(distanceList);
+	}
+	public int getClusterSize() 
+	{
+		return clusterList.size();
+	}
+	
+	
+	public ArrayList<Cluster> getClusterList() {
+		return clusterList;
+	}
+	
+	public int getIterationName()
+	{
+		return iterationName;
+	}
+	
+	public ArrayList<Cluster> mergeBestCluster(int pDistancia,int pMetrica,int k, int clustN)
+	{
+		calculateDistances(pDistancia, pMetrica, k);
+		Distance dist = distanceList.getFirst();
+		ArrayList<Cluster> clustArray;
+		clustArray = (ArrayList<Cluster>) clusterList.clone();
+		clustArray.remove(dist.getCluster1());
+		clustArray.remove(dist.getCluster2());
+		
+		
+		Cluster clust = new Cluster(clustN, dist.mergerInstances() , dist.getCluster1(), dist.getCluster2());
+		
+		return clustArray;
+		
 	}
 
 }
