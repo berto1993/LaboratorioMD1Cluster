@@ -18,7 +18,41 @@ public class ListOfIterations
 			myListOfIterations = new ListOfIterations();
 		return myListOfIterations;
 	}
-	
+
+	public void divisiveClustering(String path, int distance, int metric, int k)
+	{
+		ArrayList<Cluster> divised;
+		System.out.println("Cargando instancias");
+		ListOfInstances.getListOfInstances().loadInstances(path);
+		Iteration iterat = new Iteration(0, createCluster());
+		System.out.println("Trabajando");
+		int n = ListOfInstances.getListOfInstances().getSize();
+		
+		for (int i = 1; iterat.getClusterSize() != n; i++)
+		{
+			divised = iterat.divideBestCluster(distance, metric, k, (n + i));
+			iterat = new Iteration (i, divised);
+			list.addLast(iterat);
+		}
+	}
+
+	private ArrayList<Cluster> createCluster()
+	{
+		Instance[] lis = ListOfInstances.getListOfInstances().getInstances();
+		LinkedList<Instance> auxLis = null;
+
+		for (int i = 0; i < lis.length; i++)
+		{
+			auxLis = new LinkedList<Instance>();
+			auxLis.add(lis[i]);
+		}
+		
+		ArrayList<Cluster> clusLis = new ArrayList<Cluster>();
+		clusLis.add(new Cluster(1, auxLis, null, null));
+		
+		return clusLis;
+	}
+
 	public void aglomerativeClustering(String path, int distance, int metric, int k)
 	{	
 		ArrayList<Cluster> merged;
@@ -38,25 +72,24 @@ public class ListOfIterations
 		}
 		
 		System.out.println("Clustering finalizado");
-		
 	}
 
-	private ArrayList<Cluster> initializeClusterList() {
-		Cluster aux;
+	private ArrayList<Cluster> initializeClusterList()
+	{
+		Cluster aux = null;
 		ArrayList<Cluster> clusLis = new ArrayList<Cluster>();
 		Instance[] lis = ListOfInstances.getListOfInstances().getInstances();
-		LinkedList<Instance> auxLis;
-		El problema esta aqui, no parece darle tiempo a hacer la nueva lista y la deja en blanco
+		LinkedList<Instance> auxLis = null;
+		
+		//El problema esta aqui, no parece darle tiempo a hacer la nueva lista y la deja en blanco
 		for (int i = 0; i < lis.length; i++)
 		{
 			auxLis = new LinkedList<Instance>();
 			auxLis.add(lis[i]);
 			System.out.println(auxLis.size() + "Cluster " + i);
-			aux = new Cluster(i,auxLis , null, null);
+			aux = new Cluster(i, auxLis, null, null);
 			clusLis.add(aux);
 		}
 		return clusLis;
 	}
-	
-
 }

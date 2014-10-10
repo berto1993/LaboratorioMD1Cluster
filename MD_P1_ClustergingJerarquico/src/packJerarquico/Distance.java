@@ -15,6 +15,12 @@ public class Distance implements Comparable<Distance>
 		distance = 0;
 	}
 	
+	public Distance (Cluster pCluster1)
+	{
+		cluster1 = pCluster1;
+		distance = 0;
+	}
+	
 	public float getDistance()
 	{
 		return distance;

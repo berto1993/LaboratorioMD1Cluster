@@ -11,7 +11,7 @@ public class Main {
 		if (args.length == 4 || args.length == 5)
 		{	
 		//	0 - error	
-		//	1 - Top Down 
+		//	1 - Divisivo (conseguir un cluster para cada instancia)
 		//	2 -	Aglomerativo (conseguir solo un cluster)
 		int top = aglomerative(args[1]);
 		//	0 - error 
@@ -44,7 +44,8 @@ public class Main {
 	{
 		if (top == 2)
 			ListOfIterations.getListOfIterations().aglomerativeClustering(path, distance, metric, k);
-		
+		else
+			ListOfIterations.getListOfIterations().divisiveClustering(path, distance, metric, k);		
 	}
 
 	private static int setK(String string) {
