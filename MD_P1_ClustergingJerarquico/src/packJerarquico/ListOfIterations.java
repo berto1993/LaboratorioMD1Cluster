@@ -46,7 +46,7 @@ public class ListOfIterations
 		ArrayList<Cluster> clusLis = new ArrayList<Cluster>();
 		Instance[] lis = ListOfInstances.getListOfInstances().getInstances();
 		LinkedList<Instance> auxLis;
-		
+		El problema esta aqui, no parece darle tiempo a hacer la nueva lista y la deja en blanco
 		for (int i = 0; i < lis.length; i++)
 		{
 			auxLis = new LinkedList<Instance>();
