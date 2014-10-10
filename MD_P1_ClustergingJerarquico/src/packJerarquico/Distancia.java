@@ -81,7 +81,6 @@ public class Distancia
 		LinkedList<Instance> inslist2 = cluster2.getInstances();
 		float distanceMin = -1;
 		float distanceAux = -1;
-		
 		//Hallamos las distancias entre instancias
 		//comparando la menor obtenida hasta
 		//el momento con la ultima distancia obtenida

@@ -7,6 +7,7 @@ public class Instance
 	
 	public Instance(int pName ,String[] att, int[] numeric)
 	{
+		name = pName;
 		// Utilizamos numeric para evitar
 		// los atributos no numericos, en numeric
 		// tenemos la posición de los atributos que

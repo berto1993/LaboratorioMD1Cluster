@@ -22,10 +22,11 @@ public class Cluster
 	public Cluster (int clusterName ,LinkedList<Instance> pList , Cluster pLeft, Cluster pRight)
 	{
 		number = clusterName;
-		instances = null;
+		instances = new LinkedList<Instance>();
 		middle = null;
 		leftParent = pLeft;
 		righttParent = pRight;
+		System.out.println("Tamaño cluster " + instances.size());
 	}
 	
 	

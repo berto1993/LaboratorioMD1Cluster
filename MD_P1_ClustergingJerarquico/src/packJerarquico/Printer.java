@@ -21,12 +21,13 @@ public class Printer {
 		//Preparamos el texto que vamos
 		// a sacar por pantalla
 		String printable = prepareString(iterat);
+		System.out.println("He entrado en printer");
 		System.out.println(printable);
 		
 	}
 
 	private String prepareString(Iteration iterat) 
-	{	
+	{	System.out.println("He entrado en el metodo");
 		Instance ins;
 		Iterator<Instance> it;
 		Cluster clus;
@@ -35,20 +36,22 @@ public class Printer {
 		out.concat("Iteración nº " + iterat.getIterationName() + "\n");
 		
 		out.concat("\t Instance \t Cluster \t Iteración\n");
-		
+		System.out.println(clusterL.size());
 		for (int i = 0; i < clusterL.size(); i++)
-		{
+		{System.out.println(" i =" + i);
 			clus = clusterL.get(i);
 			it = clus.getInstances().iterator();
-			
+			System.out.println("Cluster"+clus.getNumber() +"\t" + clus.getTamano());
 			while (it.hasNext())
-			{
+			{System.out.println("entro en while");
 				ins = it.next();
-				out.concat("\t Instancia "+ ins.getName() + " \t Cluster " + clus.getNumber() +" \t  Iteración " + iterat.getIterationName());
+				System.out.println(ins.getAtributeSize()+"Hola ke ase");
+				//out.concat("\t Instancia "+ ins.getName() + " \t Cluster " + clus.getNumber() +" \t  Iteración " + iterat.getIterationName());
+				System.out.println("\t Instancia "+ ins.getName() + " \t Cluster " + clus.getNumber() +" \t  Iteración " + iterat.getIterationName());
 			}
 			
 		}
-		
+		System.out.println(out);
 		
 		return out;
 	}

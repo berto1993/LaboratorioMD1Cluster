@@ -19,7 +19,7 @@ public class ListOfInstances
 	}
 	
 	public void loadInstances(String path)
-	{
+	{	
 		list = Loader.getLoader().loadInstances(path);
 	}
 	

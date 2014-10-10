@@ -8,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) 
 	{
-		/*if (args.length == 4 || args.length == 5)
+		if (args.length == 4 || args.length == 5)
 		{	
 		//	0 - error	
 		//	1 - Top Down 
@@ -34,7 +34,7 @@ public class Main {
 			startClustering(args[0] ,top, distance, metric, k);
 		}
 		else
-			error();*/
+			error();
 		
 		
 	}

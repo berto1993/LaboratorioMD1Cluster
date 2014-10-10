@@ -28,6 +28,7 @@ public class Iteration
 		{
 			for (int j = i +1; j < clusterList.size(); j++)
 			{
+				System.out.println("Calculo diatancia cluster"+ clusterList.get(i).getTamano() +"\t cluster" + clusterList.get(j).getTamano());
 				dist = new Distance(clusterList.get(i), clusterList.get(j));
 				dist.calculateDistance(pDistancia, pMetrica, k);
 				distanceList.addLast(dist);
