@@ -49,7 +49,8 @@ public class Main {
 	}
 
 	private static int setK(String string) {
-		return Integer.getInteger(string);
+		int k = Integer.valueOf(string);
+		return k;
 	}
 
 	private static int aglomerative(String string) 
