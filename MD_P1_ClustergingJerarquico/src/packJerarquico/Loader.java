@@ -100,11 +100,11 @@ public class Loader
 			int attNumber) {
 		int[] numeric = new int[attNumber];
 		int i = 0;
-		
 		for(int j = 0; j < numericosAux.size(); j++)			
 		{
 			if(numericosAux.get(j) == true)
 				{
+				System.out.println(i + j);
 				numeric[i] = j;
 				i++;
 				}
@@ -116,13 +116,16 @@ public class Loader
 			LinkedList<Boolean> numericosAux, int attNumber) throws IOException {
 		String linea;
 		linea = br.readLine();
-		
+		//linea = linea.toUpperCase();
 		while(!linea.contains("@data") && !linea.contains("@DATA"))
 		{
+			linea = linea.toUpperCase();
 			if (linea.contains("@ATTRIBUTE"))
 			{
-				if (!linea.contains("string") && !linea.contains("class") && !linea.contains("{"))
+				System.out.println(linea);
+				if (!linea.contains("STRING") && !linea.contains("CLASS") && !linea.contains("{"))
 				{
+					System.out.println(linea);
 					attNumber++;
 					numericosAux.addLast(true);
 				}
