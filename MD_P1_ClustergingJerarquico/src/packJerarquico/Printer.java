@@ -1,6 +1,8 @@
 package packJerarquico;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +10,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfDashPattern;
+import com.itextpdf.text.pdf.PdfDestination;
+import com.itextpdf.text.pdf.PdfOutline;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 public class Printer {
 	private static Printer myPrinter = null;
@@ -63,7 +79,7 @@ public class Printer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		byPDF(iteratList,directory);
 	}
 
 	private String prepareString(Iteration iterat) 
@@ -87,6 +103,82 @@ public class Printer {
 		}
 	//	out = out + "\n \n" + "Se han unido los clusters " + iterat.g +
 		return out;
+	}
+
+	public void byPDF(LinkedList<Iteration> list, File directory) 
+	{
+		Iterator<Iteration> it = list.iterator();
+		Document document = new Document();
+		Iteration aux;
+		    // step 2
+	        PdfWriter writer = null;
+			try {
+				writer = PdfWriter.getInstance(document, new FileOutputStream(directory.getAbsolutePath() + ".pdf"));
+			} catch (FileNotFoundException | DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        document.open();
+	        Iterator<Cluster> itC = null;
+	        Iterator<Instance> itI = null;
+	        Cluster clus = null;
+	        Instance ins = null;
+	        PdfOutline root = writer.getRootOutline();
+	        PdfOutline marcador = null;
+	        Paragraph title;
+	        PdfPTable table = null;
+	        document.addTitle(directory.getName());
+	        PdfPCell cell = null;
+	        
+	        
+		while (it.hasNext())
+		{
+			aux = it.next();
+			marcador = new PdfOutline(root, new PdfDestination(PdfDestination.FITH), "Iteración " + aux.getIterationName());
+			title = new Paragraph("Iteración " + aux.getIterationName(),  FontFactory.getFont("arial", 16, Font.BOLDITALIC, BaseColor.BLUE));
+			try {
+				document.add(title);
+				document.add(new Paragraph(" "));
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			table = new PdfPTable(3); 
+			
+			/*cell = new PdfPCell(new Paragraph("Instancia",FontFactory.getFont("arial",Font.BOLD)));
+			cell.setHorizontalAlignment(50);
+
+			table.addCell(cell);*/
+			table.addCell(new Paragraph("Instancia",FontFactory.getFont("arial",12, Font.BOLD)));
+			table.addCell(new Paragraph("Cluster",FontFactory.getFont("arial",12, Font.BOLD)));
+			table.addCell(new Paragraph("Iteración",FontFactory.getFont("arial",12, Font.BOLD)));
+			itC = aux.getClusterList().iterator();
+			
+			while (itC.hasNext())
+			{
+				clus = itC.next();
+				itI = clus.getInstances().iterator();
+		
+				while (itI.hasNext())
+					{
+						ins = itI.next();
+					
+						table.addCell("Instancia "+ ins.getName());
+						table.addCell("Cluster "+ clus.getNumber());
+						table.addCell("Iteración " + aux.getIterationName());
+					}
+					
+			}
+			try {
+				document.add(table);
+				document.newPage();
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+			document.close();
+		
 	}
 
 }
