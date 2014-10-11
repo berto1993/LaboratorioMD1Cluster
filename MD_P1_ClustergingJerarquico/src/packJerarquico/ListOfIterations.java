@@ -62,7 +62,7 @@ public class ListOfIterations
 		int n = ListOfInstances.getListOfInstances().getSize();
 		Iteration iterat = new Iteration(0, initializeClusterList());
 		System.out.println("Trabajando");
-		for (i = 1; iterat.getClusterSize() != 1; i++)
+		for (i = 1; i < n /*iterat.getClusterSize() != 1*/; i++)
 		{// Le añadimos al numero total de instancias el numero de 
 		// iteraciones para denominar asi al nuevo cluster
 			merged = iterat.mergeBestCluster(distance, metric, k, (n + i));
