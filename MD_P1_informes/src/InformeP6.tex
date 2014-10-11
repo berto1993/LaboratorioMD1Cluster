@@ -18,6 +18,7 @@
 \usepackage{parcolumns}
 \usepackage{cite}
 \usepackage{hyperref}
+\usepackage[]{algorithm2e}
 
 
 \hypersetup{ colorlinks=true, linkcolor=black, citecolor=black, filecolor=black,
@@ -54,6 +55,22 @@ Jerarquico \newline
 
 \section{Algoritmo}
 %Clustering jerarquico en pseudocodigo
+\begin{algorithm}[H]
+ \KwData{Las instancias que se quieren }
+ \KwResult{Las tablas agrupando los datos en clusters}
+ 
+ Carga del fichero arff
+ \While{not at end of this document}{
+  read current\;
+  \eIf{understand}{
+   go to next section\;
+   current section becomes this one\;
+   }{
+   go back to the beginning of current section\;
+  }
+ }
+ \caption{How to write algorithms}
+\end{algorithm}
 
 \section{Diseño}
 %Diagrama de clases

@@ -60,9 +60,9 @@ public class Distancia
 		//comparando la mayor obtenida hasta
 		//el momento con la ultima distancia obtenida
 		//hasta comprobar todas las instancias
-		for(int i=1;i<cluster1.getTamano();i++)
+		for(int i=0;i<cluster1.getTamano();i++)
 		{
-			for(int j=1;i<cluster2.getTamano();j++)
+			for(int j=0;j<cluster2.getTamano();j++)
 			{
 				distanceAux = this.calculateMetric(inslist1.get(i).getAtributes(), inslist2.get(j).getAtributes() , k, pMetrica);
 				if(distanceAux > distanceMax)
@@ -79,15 +79,15 @@ public class Distancia
 	{
 		LinkedList<Instance> inslist1 = cluster1.getInstances();
 		LinkedList<Instance> inslist2 = cluster2.getInstances();
-		float distanceMin = -1;
+		float distanceMin = Float.MAX_VALUE;
 		float distanceAux = -1;
 		//Hallamos las distancias entre instancias
 		//comparando la menor obtenida hasta
 		//el momento con la ultima distancia obtenida
 		//hasta comprobar todas las instancias
-		for(int i=1;i<cluster1.getTamano();i++)
+		for(int i=0;i<cluster1.getTamano();i++)
 		{
-			for(int j=1;i<cluster2.getTamano();j++)
+			for(int j=0;i<cluster2.getTamano();j++)
 			{
 				distanceAux = this.calculateMetric(inslist1.get(i).getAtributes(), inslist2.get(j).getAtributes(), pMetrica ,k);
 				if(distanceAux < distanceMin)

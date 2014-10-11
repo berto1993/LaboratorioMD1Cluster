@@ -22,7 +22,7 @@ public class Cluster
 	public Cluster (int clusterName ,LinkedList<Instance> pList , Cluster pLeft, Cluster pRight)
 	{
 		number = clusterName;
-		instances = new LinkedList<Instance>();
+		instances = pList;
 		middle = null;
 		leftParent = pLeft;
 		righttParent = pRight;
