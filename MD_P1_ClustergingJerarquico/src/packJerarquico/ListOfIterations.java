@@ -65,6 +65,7 @@ public class ListOfIterations
 		for (i = 1; iterat.getClusterSize() != 1; i++)
 		{// Le añadimos al numero total de instancias el numero de 
 		// iteraciones para denominar asi al nuevo cluster
+			System.out.println(i);
 			merged = iterat.mergeBestCluster(distance, metric, k, (n + i));
 			iterat = new Iteration (i, merged);
 			list.addLast(iterat);
