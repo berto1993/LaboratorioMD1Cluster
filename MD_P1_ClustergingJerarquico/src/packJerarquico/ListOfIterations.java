@@ -71,7 +71,7 @@ public class ListOfIterations
 			//Printer.getPrinter().byScreenIteration(iterat);
 			//Printer.getPrinter().byTxtFile(iterat, path);
 		}
-	//	Printer.getPrinter().byScreenIteration(list);
+		Printer.getPrinter().byScreenIteration(list);
 		Printer.getPrinter().byTxtFile(list, path);
 		System.out.println("Clustering finalizado");
 	}

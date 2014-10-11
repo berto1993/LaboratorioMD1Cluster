@@ -22,13 +22,20 @@ public class Printer {
 		return myPrinter;
 	}
 
-	public void byScreenIteration(Iteration iterat) 
+	public void byScreenIteration(LinkedList<Iteration> iteratList) 
 	{
 		//Preparamos el texto que vamos
 		// a sacar por pantalla
-		String printable = prepareString(iterat);
-		System.out.println(printable);
-		
+		Iterator<Iteration> it = iteratList.iterator();
+		Iteration iterat = null;
+		String text = null;
+		String printable = null;
+		while (it.hasNext())
+		{
+			iterat = it.next();
+			text = prepareString(iterat);
+			System.out.println(text);
+		}
 	}
 
 	public void byTxtFile(LinkedList<Iteration> iteratList, String path) 
@@ -49,9 +56,9 @@ public class Printer {
 				text = prepareString(iterat);
 				printer = new PrintWriter(output);
 				printer.println(text);
-				
+				printer.close();
 			}
-			printer.close();
+	
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
