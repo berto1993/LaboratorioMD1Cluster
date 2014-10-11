@@ -68,9 +68,11 @@ public class ListOfIterations
 			merged = iterat.mergeBestCluster(distance, metric, k, (n + i));
 			iterat = new Iteration (i, merged);
 			list.addLast(iterat);
-			Printer.getPrinter().byScreenIteration(iterat);
+			//Printer.getPrinter().byScreenIteration(iterat);
+			//Printer.getPrinter().byTxtFile(iterat, path);
 		}
-		
+	//	Printer.getPrinter().byScreenIteration(list);
+		Printer.getPrinter().byTxtFile(list, path);
 		System.out.println("Clustering finalizado");
 	}
 
