@@ -116,16 +116,18 @@ public class Loader
 			LinkedList<Boolean> numericosAux, int attNumber) throws IOException {
 		String linea;
 		linea = br.readLine();
-		while(/*(linea=br.readLine())!=null || */!linea.contains("@data"))
+		System.out.println(linea);
+		while(!linea.contains("@data") && !linea.contains("@DATA"))
 		{
+			System.out.println(linea);
 			if (linea.contains("@ATTRIBUTE"))
 			{		
-			if (!linea.contains("string"))
+				if (!linea.contains("string"))
 				{
 					attNumber++;
 					numericosAux.addLast(true);
 				}
-			else
+				else
 				{	
 					numericosAux.addLast(false);
 				}
