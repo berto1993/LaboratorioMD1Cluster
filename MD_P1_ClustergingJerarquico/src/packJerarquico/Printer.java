@@ -74,7 +74,7 @@ public class Printer {
 		ArrayList<Cluster> clusterL = iterat.getClusterList();
 		String out = "Iteración nº " + iterat.getIterationName() + "\n";
 		
-		out = out +"\t Instance \t Cluster \t Iteración\n";
+		out = out +"\t\t Instance \t\t Cluster \t\t  Iteración\n";
 		for (int i = 0; i < clusterL.size(); i++)
 		{
 			clus = clusterL.get(i);
@@ -82,7 +82,7 @@ public class Printer {
 			while (it.hasNext())
 			{
 				ins = it.next();
-				out = out + "\t Instancia "+ ins.getName() + " \t Cluster " + clus.getNumber() +" \t  Iteración " + iterat.getIterationName() + "\n";
+				out = out + "\t\t Instancia "+ ins.getName() + "\t\t Cluster " + clus.getNumber() +"\t\t  Iteración " + iterat.getIterationName() + "\n";
 			}
 		}
 	//	out = out + "\n \n" + "Se han unido los clusters " + iterat.g +
