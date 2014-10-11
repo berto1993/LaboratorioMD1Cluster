@@ -117,7 +117,7 @@ public class Loader
 		String linea;
 		linea = br.readLine();
 		System.out.println(linea);
-		while(!linea.contains("@data") && !linea.contains("@DATA"))
+		while(!linea.contains("@data") && !linea.contains("@DATA") && !linea.contains("class"))
 		{
 			System.out.println(linea);
 			if (linea.contains("@ATTRIBUTE"))
