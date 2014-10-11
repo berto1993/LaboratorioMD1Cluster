@@ -26,7 +26,6 @@ public class Cluster
 		middle = null;
 		leftParent = pLeft;
 		righttParent = pRight;
-		System.out.println("Tamaño cluster " + instances.size());
 	}
 	
 	

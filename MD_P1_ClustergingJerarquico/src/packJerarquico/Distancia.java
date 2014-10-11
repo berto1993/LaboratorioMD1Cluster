@@ -36,17 +36,17 @@ public class Distancia
 		//	1 - Euclidean
 		//	2 - Manhattan
 		//	3 - Minkowski
-		switch (pMetrica) {
-		case 1:
-			return Metrica.getMetrica().calculateEuclidean(coordinate1, coordinate2);
-		case 2:
-			return Metrica.getMetrica().calculateManhattan(coordinate1, coordinate2);
-		case 3:
-			return Metrica.getMetrica().calculateMikowski(coordinate1, coordinate2, k);
-		default:
-			System.out.println("No has indicado ninguna Metrica");
-			return 0;
-		}
+		float dist = 0;
+	
+		if (pMetrica == 1)
+			dist = Metrica.getMetrica().calculateEuclidean(coordinate1, coordinate2);
+		if (pMetrica == 2)
+			dist = Metrica.getMetrica().calculateManhattan(coordinate1, coordinate2);
+		if (pMetrica == 3)
+			dist = Metrica.getMetrica().calculateMikowski(coordinate1, coordinate2, k);
+		
+		return dist;
+		
 	}
 
 	public float calculateComplete(Cluster cluster1, Cluster cluster2,	int pMetrica , int k)
@@ -64,7 +64,7 @@ public class Distancia
 		{
 			for(int j=0;j<cluster2.getTamano();j++)
 			{
-				distanceAux = this.calculateMetric(inslist1.get(i).getAtributes(), inslist2.get(j).getAtributes() , k, pMetrica);
+				distanceAux = this.calculateMetric(inslist1.get(i).getAtributes(), inslist2.get(j).getAtributes() , pMetrica, k);
 				if(distanceAux > distanceMax)
 				{
 					distanceMax = distanceAux;
@@ -85,9 +85,9 @@ public class Distancia
 		//comparando la menor obtenida hasta
 		//el momento con la ultima distancia obtenida
 		//hasta comprobar todas las instancias
-		for(int i=0;i<cluster1.getTamano();i++)
+		for(int i = 0; i < inslist1.size(); i++)
 		{
-			for(int j=0;i<cluster2.getTamano();j++)
+			for(int j = 0; j < inslist2.size(); j++)
 			{
 				distanceAux = this.calculateMetric(inslist1.get(i).getAtributes(), inslist2.get(j).getAtributes(), pMetrica ,k);
 				if(distanceAux < distanceMin)
