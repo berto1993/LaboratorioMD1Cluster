@@ -121,7 +121,7 @@ public class Loader
 		{
 			if (linea.contains("@ATTRIBUTE"))
 			{
-				if (!linea.contains("string") && !linea.contains("class"))
+				if (!linea.contains("string") && !linea.contains("class") && !linea.contains("{"))
 				{
 					attNumber++;
 					numericosAux.addLast(true);
