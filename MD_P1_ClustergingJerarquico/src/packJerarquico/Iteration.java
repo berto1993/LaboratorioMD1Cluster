@@ -60,7 +60,7 @@ public class Iteration
 		clustArray.remove(dist.getCluster1());
 		clustArray.remove(dist.getCluster2());
 		
-		Cluster clust = new Cluster(clustN, dist.mergerInstances() , dist.getCluster1(), dist.getCluster2());
+		Cluster clust = new Cluster(clustN, dist.mergerInstances() , dist.getCluster1(), dist.getCluster2(), iterationName);
 		//Añadimos el nuevo cluster (El unido) a la nuevalista de clusters
 		clustArray.add(clust);
 		

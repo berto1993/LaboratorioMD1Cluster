@@ -98,7 +98,7 @@ public class Printer {
 			while (it.hasNext())
 			{
 				ins = it.next();
-				out = out + "\t\t Instancia "+ ins.getName() + "\t\t Cluster " + clus.getNumber() +"\t\t  Iteración " + iterat.getIterationName() + "\n";
+				out = out + "\t\t Instancia "+ ins.getName() + "\t\t Cluster " + clus.getNumber() +"\t\t  Iteración " + clus.getIteration() + "\n";
 			}
 		}
 		out = out + "\n \n" + "Se han unido los clusters " + iterat.getClusterList().get(iterat.getClusterList().size()-1).getLeftParent().getNumber() + " y " + iterat.getClusterList().get(iterat.getClusterList().size()-1).getRighttParent().getNumber() + " en el cluster " + iterat.getClusterList().get(iterat.getClusterList().size()-1).getNumber() + "\n"; 
@@ -165,7 +165,7 @@ public class Printer {
 					
 						table.addCell("Instancia "+ ins.getName());
 						table.addCell("Cluster "+ clus.getNumber());
-						table.addCell("Iteración " + aux.getIterationName());
+						table.addCell("Iteración " + clus.getIteration());
 					}
 					
 			}

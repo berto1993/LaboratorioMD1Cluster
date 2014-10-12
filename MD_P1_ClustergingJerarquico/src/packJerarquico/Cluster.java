@@ -18,14 +18,16 @@ public class Cluster
 	// En la primera iteración estan a null;
 	private Cluster leftParent = null;
 	private Cluster righttParent = null;
+	private int iteracionCreacion;
 	
-	public Cluster (int clusterName ,LinkedList<Instance> pList , Cluster pLeft, Cluster pRight)
+	public Cluster (int clusterName ,LinkedList<Instance> pList , Cluster pLeft, Cluster pRight, int pCreac)
 	{
 		number = clusterName;
 		instances = pList;
 		middle = null;
 		leftParent = pLeft;
 		righttParent = pRight;
+		iteracionCreacion = pCreac;
 	}
 	
 	
@@ -123,5 +125,10 @@ public class Cluster
 
 	public Cluster getRighttParent() {
 		return righttParent;
+	}
+
+
+	public int getIteration() {
+		return iteracionCreacion;
 	}
 }

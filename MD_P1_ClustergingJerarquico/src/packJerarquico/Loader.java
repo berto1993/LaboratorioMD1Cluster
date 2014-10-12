@@ -121,7 +121,6 @@ public class Loader
 			linea = linea.toUpperCase();
 			if (linea.contains("@ATTRIBUTE"))
 			{
-				System.out.println(linea);
 				if (!linea.contains("STRING") && !linea.contains("CLASS") && !linea.contains("{"))
 				{
 					attNumber++;

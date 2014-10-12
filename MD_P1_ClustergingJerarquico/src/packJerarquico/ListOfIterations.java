@@ -48,7 +48,7 @@ public class ListOfIterations
 		}
 		
 		ArrayList<Cluster> clusLis = new ArrayList<Cluster>();
-		clusLis.add(new Cluster(1, auxLis, null, null));
+	//	clusLis.add(new Cluster(1, auxLis, null, null));
 		
 		return clusLis;
 	}
@@ -65,7 +65,6 @@ public class ListOfIterations
 		for (i = 1; i < n /*iterat.getClusterSize() != 1*/; i++)
 		{// Le añadimos al numero total de instancias el numero de 
 		// iteraciones para denominar asi al nuevo cluster
-			System.out.println(i);
 			merged = iterat.mergeBestCluster(distance, metric, k, (n + i));
 			iterat = new Iteration (i, merged);
 			list.addLast(iterat);
@@ -89,7 +88,7 @@ public class ListOfIterations
 		{
 			auxLis = new LinkedList<Instance>();
 			auxLis.add(lis[i]);
-			aux = new Cluster(i, auxLis, null, null);
+			aux = new Cluster(i, auxLis, null, null, 0);
 			clusLis.add(aux);
 		}
 		return clusLis;
