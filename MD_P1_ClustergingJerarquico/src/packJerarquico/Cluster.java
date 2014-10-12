@@ -114,4 +114,14 @@ public class Cluster
 			middle[i] = 0;
 		}
 	}
+
+
+	public Cluster getLeftParent() {
+		return leftParent;
+	}
+
+
+	public Cluster getRighttParent() {
+		return righttParent;
+	}
 }

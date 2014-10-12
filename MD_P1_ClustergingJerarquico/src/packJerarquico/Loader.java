@@ -104,7 +104,6 @@ public class Loader
 		{
 			if(numericosAux.get(j) == true)
 				{
-				System.out.println(i + j);
 				numeric[i] = j;
 				i++;
 				}
@@ -116,7 +115,7 @@ public class Loader
 			LinkedList<Boolean> numericosAux, int attNumber) throws IOException {
 		String linea;
 		linea = br.readLine();
-		//linea = linea.toUpperCase();
+		linea = linea.toUpperCase();
 		while(!linea.contains("@data") && !linea.contains("@DATA"))
 		{
 			linea = linea.toUpperCase();
@@ -125,7 +124,6 @@ public class Loader
 				System.out.println(linea);
 				if (!linea.contains("STRING") && !linea.contains("CLASS") && !linea.contains("{"))
 				{
-					System.out.println(linea);
 					attNumber++;
 					numericosAux.addLast(true);
 				}

@@ -101,7 +101,7 @@ public class Printer {
 				out = out + "\t\t Instancia "+ ins.getName() + "\t\t Cluster " + clus.getNumber() +"\t\t  Iteración " + iterat.getIterationName() + "\n";
 			}
 		}
-	//	out = out + "\n \n" + "Se han unido los clusters " + iterat.g +
+		out = out + "\n \n" + "Se han unido los clusters " + iterat.getClusterList().get(iterat.getClusterList().size()-1).getLeftParent().getNumber() + " y " + iterat.getClusterList().get(iterat.getClusterList().size()-1).getRighttParent().getNumber() + " en el cluster " + iterat.getClusterList().get(iterat.getClusterList().size()-1).getNumber() + "\n"; 
 		return out;
 	}
 
@@ -171,6 +171,7 @@ public class Printer {
 			}
 			try {
 				document.add(table);
+				document.add(new Paragraph("Se han unido los clusters " + clus.getLeftParent().getNumber() + " y " + clus.getRighttParent().getNumber() + " en el cluster " + clus.getNumber()));
 				document.newPage();
 			} catch (DocumentException e) {
 				// TODO Auto-generated catch block
