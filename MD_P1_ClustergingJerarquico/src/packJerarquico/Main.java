@@ -35,8 +35,6 @@ public class Main {
 		}
 		else
 			error();
-		
-		
 	}
 
 	private static void startClustering(String path, int top, int distance,
@@ -45,7 +43,7 @@ public class Main {
 		if (top == 2)
 			ListOfIterations.getListOfIterations().aglomerativeClustering(path, distance, metric, k);
 		else
-			ListOfIterations.getListOfIterations().divisiveClustering(path, distance, metric, k);		
+			ListOfIterations.getListOfIterations().divisiveClustering(path, metric, k);		
 	}
 
 	private static int setK(String string) {
@@ -56,7 +54,7 @@ public class Main {
 	private static int aglomerative(String string) 
 	{
 	int aux = 0;
-		if (string.equals("-Top"))
+		if (string.equals("-Div"))
 			aux = 1;
 		if (string.equals("-Aglom"))
 			aux= 2;
