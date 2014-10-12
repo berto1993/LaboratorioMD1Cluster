@@ -1,6 +1,7 @@
 package packJerarquico;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 
 public class ListOfIterations 
@@ -68,11 +69,11 @@ public class ListOfIterations
 			merged = iterat.mergeBestCluster(distance, metric, k, (n + i));
 			iterat = new Iteration (i, merged);
 			list.addLast(iterat);
-			//Printer.getPrinter().byScreenIteration(iterat);
-			//Printer.getPrinter().byTxtFile(iterat, path);
 		}
+		path = path + new Date().getTime();
 		Printer.getPrinter().byScreenIteration(list);
 		Printer.getPrinter().byTxtFile(list, path);
+		Printer.getPrinter().byPDF(list, path);
 		System.out.println("Clustering finalizado");
 	}
 

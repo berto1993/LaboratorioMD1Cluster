@@ -58,7 +58,7 @@ public class Printer {
 	{
 		Iteration iterat = null;
 		//File output = new File(path).getParentFile();
-		File directory = new File(path + new Date().getTime());
+		File directory = new File(path);
 		directory.mkdirs();
 		Iterator<Iteration> it = iteratList.iterator();
 		FileWriter output = null;
@@ -79,7 +79,6 @@ public class Printer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		byPDF(iteratList,directory);
 	}
 
 	private String prepareString(Iteration iterat) 
@@ -105,15 +104,16 @@ public class Printer {
 		return out;
 	}
 
-	public void byPDF(LinkedList<Iteration> list, File directory) 
+	public void byPDF(LinkedList<Iteration> list, String directory) 
 	{
 		Iterator<Iteration> it = list.iterator();
 		Document document = new Document();
+		File file = new File (directory + ".pdf");
 		Iteration aux;
 		    // step 2
 	        PdfWriter writer = null;
 			try {
-				writer = PdfWriter.getInstance(document, new FileOutputStream(directory.getAbsolutePath() + ".pdf"));
+				writer = PdfWriter.getInstance(document, new FileOutputStream(file));
 			} catch (FileNotFoundException | DocumentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -127,7 +127,7 @@ public class Printer {
 	        PdfOutline marcador = null;
 	        Paragraph title;
 	        PdfPTable table = null;
-	        document.addTitle(directory.getName());
+	        document.addTitle(file.getName());
 	        PdfPCell cell = null;
 	        
 	        
