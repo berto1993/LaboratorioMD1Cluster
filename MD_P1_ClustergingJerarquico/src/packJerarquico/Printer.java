@@ -2,6 +2,8 @@ package packJerarquico;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -218,7 +220,8 @@ public class Printer {
 		File fichero = new File(path +"/Dendograma.jpg");
 		String formato = "jpg";
 		int width = 500;
-		int height = 500;
+		int height = 600;
+		int maxHeight = 500;
 		BufferedImage image = new BufferedImage(width, height,BufferedImage.TYPE_INT_RGB);
 		Iteration iter = null;
 		Instance inst;
@@ -229,7 +232,7 @@ public class Printer {
 		float depth, previousDepth;
 		depth = 0;
 		Cluster clus = null;
-		Graphics g = image.getGraphics();
+		Graphics2D g = (Graphics2D) image.getGraphics();
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, width, height);
 		g.setColor(Color.BLACK);
@@ -239,7 +242,8 @@ public class Printer {
 			iter = itI.next();
 			clus = iter.getClusterList().get(iter.getClusterSize()-1);
 			}
-		draw(g, clus, width, height, instaCoor, 0 , 0, false);
+		draw(g, clus, width, maxHeight
+				, instaCoor, 0 , 0, false);
 	
 		try {
 			ImageIO.write(image, formato, fichero);
@@ -249,7 +253,7 @@ public class Printer {
 		}
 	}
 
-private void draw(Graphics g, Cluster clus, int width, int height,
+private void draw(Graphics g, Cluster clus, int width, int maxHeight,
 			int[] instaCoor, int lW, int lD, boolean izq) {
 		// TODO Auto-generated method stub
 		if (lW == 0 && lD == 0)
@@ -258,9 +262,9 @@ private void draw(Graphics g, Cluster clus, int width, int height,
 			lD = lD + instaCoor[0];
 			g.drawLine(lW, 0 , lW, lD);
 			if(clus.getLeftParent() != null)
-				draw(g, clus.getLeftParent(), width, height, instaCoor, lW, lD, true);
+				draw(g, clus.getLeftParent(), width, maxHeight, instaCoor, lW, lD, true);
 			if(clus.getRighttParent() != null)
-				draw(g, clus.getRighttParent(), width, height, instaCoor, lW, lD, false);
+				draw(g, clus.getRighttParent(), width, maxHeight, instaCoor, lW, lD, false);
 			}
 		else
 		{
@@ -268,16 +272,40 @@ private void draw(Graphics g, Cluster clus, int width, int height,
 			{
 				g.drawLine(lW, lD, lW - instaCoor[0], lD);
 				lW = lW - instaCoor[0];
-				if (clus.getLeftParent() == null && clus.getRighttParent()==null)
-					g.drawLine(lW, lD, lW, height);
+				if (clus.getLeftParent() == null && clus.getRighttParent() == null)
+				{
+					System.out.println(clus.getNumber());
+
+					g.drawLine(lW, lD, lW, maxHeight);
+					 // Create a rotation transformation for the font.
+				    AffineTransform fontAT = new AffineTransform();
+				    
+					 // get the current font
+				    java.awt.Font theFont = g.getFont();
+
+				    // Derive a new font using a rotatation transform
+				   // fontAT.rotate(45);
+				    fontAT.rotate(90 * java.lang.Math.PI/180);
+				    java.awt.Font theDerivedFont = theFont.deriveFont(fontAT);
+
+				    // set the derived font in the Graphics2D context
+				    g.setFont(theDerivedFont);
+
+				    // Render a string using the derived font
+				    g.drawString("Cluster"+clus.getNumber(), lW, maxHeight+5);
+
+				    // put the original font back
+				    g.setFont(theFont);
+				}
 				else
 				{
 					g.drawLine(lW, lD, lW, lD + instaCoor[0]);
 					lD = lD + instaCoor[0];
 					if(clus.getLeftParent() != null)
-						draw(g, clus.getLeftParent(), width, height, instaCoor, lW, lD, true);
+						draw(g, clus.getLeftParent(), width, maxHeight, instaCoor, lW, lD, true);
 					if(clus.getRighttParent() != null)
-						draw(g, clus.getRighttParent(), width, height, instaCoor, lW, lD, false);
+						draw(g, clus.getRighttParent(), width, maxHeight, instaCoor, lW, lD, false);
+					
 				}
 			}
 			else
@@ -285,81 +313,43 @@ private void draw(Graphics g, Cluster clus, int width, int height,
 				g.drawLine(lW, lD, lW + instaCoor[0], lD);
 				lW = lW + instaCoor[0];
 				if (clus.getLeftParent() == null && clus.getRighttParent()==null)
-					g.drawLine(lW, lD, lW, height);
+					{
+					g.drawLine(lW, lD, lW, maxHeight);
+					System.out.println(clus.getNumber());
+
+					g.drawLine(lW, lD, lW, maxHeight);
+					 // Create a rotation transformation for the font.
+				    AffineTransform fontAT = new AffineTransform();
+				    
+					 // get the current font
+				    java.awt.Font theFont = g.getFont();
+
+				    // Derive a new font using a rotatation transform
+				   // fontAT.rotate(45);
+				    fontAT.rotate(90 * java.lang.Math.PI/180);
+				    java.awt.Font theDerivedFont = theFont.deriveFont(fontAT);
+
+				    // set the derived font in the Graphics2D context
+				    g.setFont(theDerivedFont);
+
+				    // Render a string using the derived font
+				    g.drawString("Cluster"+clus.getNumber(), lW, maxHeight+5);
+
+				    // put the original font back
+				    g.setFont(theFont);
+					}
 				else
 				{
 					g.drawLine(lW, lD, lW, lD + instaCoor[0]);
 					lD = lD + instaCoor[0];
 					if(clus.getLeftParent() != null)
-						draw(g, clus.getLeftParent(), width, height, instaCoor, lW, lD, true);
+						draw(g, clus.getLeftParent(), width, maxHeight, instaCoor, lW, lD, true);
 					if(clus.getRighttParent() != null)
-						draw(g, clus.getRighttParent(), width, height, instaCoor, lW, lD, false);
+						draw(g, clus.getRighttParent(), width, maxHeight, instaCoor, lW, lD, false);
 				}
 			}
 		}
 	}
-
-/*	private void dibujar(Graphics g, Iterator<Iteration> itI, Iteration iter, int width, int height, int nInstancias, int[] instaCoor,int center) {
-		// TODO Auto-generated method stub
-		/*int depth;
-		if (iter == null)
-		{
-			iter = itI.next();
-			iter = itI.next();
-			depth = (int) iter.getNearestDist();
-			g.drawLine(width/2, 0, width/2, height-depth);
-			dibujar(g, itI, iter, width, height, nInstancias, instaCoor, width/2, width/2);
-		}
-		else
-		{
-			Cluster clus = iter.getClusterList().get(iter.getClusterList().size()-1);
-			System.out.println(clus.getNumber());
-			depth = (int) iter.getNearestDist();
-			if (itI.hasNext())
-			{
-				iter =itI.next();
-				if (clus.getLeftParent().getNumber() < nInstancias && clus.getRighttParent().getNumber() < nInstancias)
-				{
-					g.drawLine(instaCoor[clus.getLeftParent().getNumber()], depth, instaCoor[clus.getRighttParent().getNumber()], depth);
-					g.drawLine(instaCoor[clus.getLeftParent().getNumber()], depth, instaCoor[clus.getLeftParent().getNumber()], height);
-					g.drawLine(instaCoor[clus.getRighttParent().getNumber()], depth, instaCoor[clus.getRighttParent().getNumber()], height);
-					System.out.println("2º if");
-
-				}
-				else
-				{
-					if (clus.getLeftParent().getNumber() < nInstancias)
-					{
-						g.drawLine(instaCoor[clus.getLeftParent().getNumber()], depth, leftX, depth);
-						g.drawLine(instaCoor[clus.getLeftParent().getNumber()], depth, instaCoor[0], height);
-						dibujar(g, itI, iter, width, height, nInstancias, instaCoor, 0, rightX);
-						System.out.println("3º if");
-
-					}
-					else
-					{
-						.System.out.println("4º if");
-
-						}
-					}
-				}
-			}
-		}
-		if (iter == null)
-		{
-			if (itI.hasNext())
-			iter = itI.next();
-			g.drawLine(width/2, 0, width/2, instaCoor[0]);
-			dibujar(g, itI, iter, width, height, nInstancias, instaCoor, width/2, depth instaCoor[0]);
-			
-		}
-		else
-		{
-			iter
-			Cluster lef = iter.getClusterList();
-			
-		}
-	}*/
 
 	private void initializeCoordinates(int[] instaCoor, int width,
 			int nInstancias) {
