@@ -62,7 +62,7 @@ public class Iteration
 		
 		Cluster clust = new Cluster(clustN, dist.mergerInstances() , dist.getCluster1(), dist.getCluster2(), iterationName);
 		//Añadimos el nuevo cluster (El unido) a la nuevalista de clusters
-		clustArray.add(clust);
+		clustArray.add(clustArray.size(),clust);
 		
 		return clustArray;
 	}
@@ -93,5 +93,15 @@ public class Iteration
 			distanceList.addLast(dist);
 		}
 		Collections.sort(distanceList);
+	}
+	
+	public float getNearestDist()
+	{
+		return distanceList.getFirst().getDistance();
+	}
+	
+	public float getFurthestDist()
+	{
+		return distanceList.getLast().getDistance();
 	}
 }

@@ -1,21 +1,29 @@
 package packJerarquico;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import javax.imageio.ImageIO;
+
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfDashPattern;
@@ -104,11 +112,11 @@ public class Printer {
 		return out;
 	}
 
-	public void byPDF(LinkedList<Iteration> list, String directory) 
+	public void byPDF(LinkedList<Iteration> list, String path) 
 	{
 		Iterator<Iteration> it = list.iterator();
 		Document document = new Document();
-		File file = new File (directory + ".pdf");
+		File file = new File (path + ".pdf");
 		Iteration aux;
 		    // step 2
 	        PdfWriter writer = null;
@@ -129,7 +137,31 @@ public class Printer {
 	        PdfPTable table = null;
 	        document.addTitle(file.getName());
 	        PdfPCell cell = null;
-	        
+			marcador = new PdfOutline(root, new PdfDestination(PdfDestination.FITH), "Dendograma" );
+			title = new Paragraph("Dendograma\n",  FontFactory.getFont("arial", 16, Font.BOLDITALIC, BaseColor.BLUE));
+			try {
+				document.add(title);
+			} catch (DocumentException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			try {
+				document.add(Image.getInstance(new File(path + "/dendograma.jpg").toURL()));
+			} catch (BadElementException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (DocumentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			document.newPage();
+
 	        
 		while (it.hasNext())
 		{
@@ -178,8 +210,166 @@ public class Printer {
 				e.printStackTrace();
 			}	
 		}
-			document.close();
+			document.close();	
+	}
+	
+	public void createDendogram(String path, LinkedList<Iteration> list)
+	{
+		File fichero = new File(path +"/Dendograma.jpg");
+		String formato = "jpg";
+		int width = 500;
+		int height = 500;
+		BufferedImage image = new BufferedImage(width, height,BufferedImage.TYPE_INT_RGB);
+		Iteration iter = null;
+		Instance inst;
+		int nInstancias = ListOfInstances.getListOfInstances().getSize();
+		Iterator<Iteration> itI = list.descendingIterator();
+		int[] instaCoor = new int[nInstancias];
+		initializeCoordinates(instaCoor, width, nInstancias);
+		float depth, previousDepth;
+		depth = 0;
+		Cluster clus = null;
+		Graphics g = image.getGraphics();
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, width, height);
+		g.setColor(Color.BLACK);
+		//dibujar (g, itI, iter, width, height, nInstancias,instaCoor, 0);
+		if(itI.hasNext())
+			{
+			iter = itI.next();
+			clus = iter.getClusterList().get(iter.getClusterSize()-1);
+			}
+		draw(g, clus, width, height, instaCoor, 0 , 0, false);
+	
+		try {
+			ImageIO.write(image, formato, fichero);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+private void draw(Graphics g, Cluster clus, int width, int height,
+			int[] instaCoor, int lW, int lD, boolean izq) {
+		// TODO Auto-generated method stub
+		if (lW == 0 && lD == 0)
+		{
+			lW = lW + instaCoor[0];
+			lD = lD + instaCoor[0];
+			g.drawLine(lW, 0 , lW, lD);
+			if(clus.getLeftParent() != null)
+				draw(g, clus.getLeftParent(), width, height, instaCoor, lW, lD, true);
+			if(clus.getRighttParent() != null)
+				draw(g, clus.getRighttParent(), width, height, instaCoor, lW, lD, false);
+			}
+		else
+		{
+			if (izq)
+			{
+				g.drawLine(lW, lD, lW - instaCoor[0], lD);
+				lW = lW - instaCoor[0];
+				if (clus.getLeftParent() == null && clus.getRighttParent()==null)
+					g.drawLine(lW, lD, lW, height);
+				else
+				{
+					g.drawLine(lW, lD, lW, lD + instaCoor[0]);
+					lD = lD + instaCoor[0];
+					if(clus.getLeftParent() != null)
+						draw(g, clus.getLeftParent(), width, height, instaCoor, lW, lD, true);
+					if(clus.getRighttParent() != null)
+						draw(g, clus.getRighttParent(), width, height, instaCoor, lW, lD, false);
+				}
+			}
+			else
+			{
+				g.drawLine(lW, lD, lW + instaCoor[0], lD);
+				lW = lW + instaCoor[0];
+				if (clus.getLeftParent() == null && clus.getRighttParent()==null)
+					g.drawLine(lW, lD, lW, height);
+				else
+				{
+					g.drawLine(lW, lD, lW, lD + instaCoor[0]);
+					lD = lD + instaCoor[0];
+					if(clus.getLeftParent() != null)
+						draw(g, clus.getLeftParent(), width, height, instaCoor, lW, lD, true);
+					if(clus.getRighttParent() != null)
+						draw(g, clus.getRighttParent(), width, height, instaCoor, lW, lD, false);
+				}
+			}
+		}
+	}
+
+/*	private void dibujar(Graphics g, Iterator<Iteration> itI, Iteration iter, int width, int height, int nInstancias, int[] instaCoor,int center) {
+		// TODO Auto-generated method stub
+		/*int depth;
+		if (iter == null)
+		{
+			iter = itI.next();
+			iter = itI.next();
+			depth = (int) iter.getNearestDist();
+			g.drawLine(width/2, 0, width/2, height-depth);
+			dibujar(g, itI, iter, width, height, nInstancias, instaCoor, width/2, width/2);
+		}
+		else
+		{
+			Cluster clus = iter.getClusterList().get(iter.getClusterList().size()-1);
+			System.out.println(clus.getNumber());
+			depth = (int) iter.getNearestDist();
+			if (itI.hasNext())
+			{
+				iter =itI.next();
+				if (clus.getLeftParent().getNumber() < nInstancias && clus.getRighttParent().getNumber() < nInstancias)
+				{
+					g.drawLine(instaCoor[clus.getLeftParent().getNumber()], depth, instaCoor[clus.getRighttParent().getNumber()], depth);
+					g.drawLine(instaCoor[clus.getLeftParent().getNumber()], depth, instaCoor[clus.getLeftParent().getNumber()], height);
+					g.drawLine(instaCoor[clus.getRighttParent().getNumber()], depth, instaCoor[clus.getRighttParent().getNumber()], height);
+					System.out.println("2º if");
+
+				}
+				else
+				{
+					if (clus.getLeftParent().getNumber() < nInstancias)
+					{
+						g.drawLine(instaCoor[clus.getLeftParent().getNumber()], depth, leftX, depth);
+						g.drawLine(instaCoor[clus.getLeftParent().getNumber()], depth, instaCoor[0], height);
+						dibujar(g, itI, iter, width, height, nInstancias, instaCoor, 0, rightX);
+						System.out.println("3º if");
+
+					}
+					else
+					{
+						.System.out.println("4º if");
+
+						}
+					}
+				}
+			}
+		}
+		if (iter == null)
+		{
+			if (itI.hasNext())
+			iter = itI.next();
+			g.drawLine(width/2, 0, width/2, instaCoor[0]);
+			dibujar(g, itI, iter, width, height, nInstancias, instaCoor, width/2, depth instaCoor[0]);
+			
+		}
+		else
+		{
+			iter
+			Cluster lef = iter.getClusterList();
+			
+		}
+	}*/
+
+	private void initializeCoordinates(int[] instaCoor, int width,
+			int nInstancias) {
+		// TODO Auto-generated method stub
+		int frac = (width/nInstancias);
 		
+		for (int i = 0; i < instaCoor.length; i++)
+		{
+			instaCoor[i] = frac*(i+1);
+		}
 	}
 
 }

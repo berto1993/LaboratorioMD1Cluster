@@ -73,6 +73,7 @@ public class ListOfIterations
 		path = path + new Date().getTime();
 		Printer.getPrinter().byScreenIteration(list);
 		Printer.getPrinter().byTxtFile(list, path);
+		Printer.getPrinter().createDendogram(path, list);
 		Printer.getPrinter().byPDF(list, path);
 		System.out.println("Clustering finalizado");
 	}
