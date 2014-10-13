@@ -20,6 +20,12 @@ public class ListOfIterations
 		return myListOfIterations;
 	}
 
+	/**
+	 * Algoritmo de clustering jerarquico TopDown
+	 * @param path Ruta del fichero de datos
+	 * @param metric Metrica a utilizar
+	 * @param k K a utilizar con Minkowski (opcional)
+	 */
 	public void divisiveClustering(String path, int metric, int k)
 	{
 		ArrayList<Cluster> divised;
@@ -36,14 +42,17 @@ public class ListOfIterations
 			list.addLast(iterat);
 		}
 		
-		/*path = path + new Date().getTime();
-		Printer.getPrinter().byScreenIteration(list);
+		path = path + new Date().getTime();
+		/*Printer.getPrinter().byScreenIteration(list);
 		Printer.getPrinter().byTxtFile(list, path);
 		Printer.getPrinter().createDendogram(path, list);
 		Printer.getPrinter().byPDF(list, path);*/
 		System.out.println("Clustering finalizado");
 	}
-
+	/**
+	 * Crea un cluster con todas las instancias
+	 * @return Devuelve una lista de clusters con un solo cluster
+	 */
 	private ArrayList<Cluster> createCluster()
 	{
 		Instance[] lis = ListOfInstances.getListOfInstances().getInstances();
@@ -61,6 +70,13 @@ public class ListOfIterations
 		return clusLis;
 	}
 
+	/**
+	 * Algoritmo de clustering jerarquico Bottom-Up
+	 * @param path Ruta del fichero de datos
+	 * @param distance Tipo de distancia (Simple, Complete, Average)
+	 * @param metric Metrica a utlizar (Euclidea, Minkoswki, Manhattan)
+	 * @param k K para minkowski
+	 */
 	public void aglomerativeClustering(String path, int distance, int metric, int k)
 	{	
 		ArrayList<Cluster> merged;
@@ -87,6 +103,11 @@ public class ListOfIterations
 		System.out.println("Clustering finalizado");
 	}
 
+	/**
+	 * Convierte las instancias en un arraylist
+	 * de clusters de una unica instancia
+	 * @return
+	 */
 	private ArrayList<Cluster> initializeClusterList()
 	{
 		Cluster aux = null;

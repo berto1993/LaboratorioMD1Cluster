@@ -25,6 +25,12 @@ public class Instance
 		return name;
 	}
 
+	/**
+	 * 
+	 * @param i posicion del atributo que se
+	 * quiere conseguir
+	 * @return el atributo en posicion i
+	 */
 	public float getAtribute(int i)
 	{
 		return this.atributes[i];

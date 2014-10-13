@@ -21,7 +21,11 @@ public class Loader
 			myLoader = new Loader();
 		return myLoader;
 	}
-	
+	/**
+	 * Carga las instancias (Solo carga los atributos numericos)
+	 * @param path Ruta del fichero
+	 * @return Array de instacias
+	 */
 	public Instance[] loadInstances(String path)
 	{
 		// Vamos a almacenar aqui
@@ -51,7 +55,7 @@ public class Loader
 			// Numero de atributos con el
 			// que vamos a trabajar
 			int attNumber = 0;
-			attNumber = headerExtractor(br, numericosAux, attNumber);
+			attNumber = headerExtractor(br, numericosAux);
 			
 			// Para agilizar el proceso
 			// trabajamos con un array
@@ -95,9 +99,18 @@ public class Loader
 		// el acceso a los atributos
 		return instances.toArray(new Instance[instances.size()]);
 	}
-
+	
+	/**
+	 * Convierte la lista de que atributos son numericos en un 
+	 * array con las posiciones de los mismos
+	 * @param numericosAux
+	 * @param attNumber
+	 * @return 
+	 */
 	private int[] numericExtractor(LinkedList<Boolean> numericosAux,
 			int attNumber) {
+		//Introduce en un array de attNumber (numero de atributos numericos)
+		// posiciones las posiciones de los atributos numericos
 		int[] numeric = new int[attNumber];
 		int i = 0;
 		for(int j = 0; j < numericosAux.size(); j++)			
@@ -110,9 +123,17 @@ public class Loader
 		}
 		return numeric;
 	}
-
+/**
+ * Extrae en una lista ligada que atributos son numericos y devuelve
+ * el numero de los mismos
+ * @param br 
+ * @param numericosAux lista de booleanos indicando con true los atributos numericos
+ * @return numero de atributos numericos
+ * @throws IOException
+ */
 	private int headerExtractor(BufferedReader br,
-			LinkedList<Boolean> numericosAux, int attNumber) throws IOException {
+			LinkedList<Boolean> numericosAux) throws IOException {
+		int attNumber = 0;
 		String linea;
 		linea = br.readLine();
 		linea = linea.toUpperCase();
@@ -133,7 +154,7 @@ public class Loader
 			}
 		linea = br.readLine();
 		}
-		return attNumber;
+		return attNumber; 
 	}	
 		
 

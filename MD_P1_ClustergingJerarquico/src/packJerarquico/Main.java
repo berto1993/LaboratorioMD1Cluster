@@ -93,7 +93,7 @@ public class Main {
 	{
 		System.out.println("Usage:\n java -jar <path> <arg1> <arg2> <arg3> [needed for Minkowski]");
 		System.out.println("where the available	options are:");
-		System.out.println("Arg1:\n \t \"-Top\" for Top-Down \n "
+		System.out.println("Arg1:\n \t \"-Div\" for Top-Down \n "
 				+ "\t \"-Aglom\" for Aglomerative ");
 		System.out.println("Arg2:\n \t \"-Simple\" \n \t \"-Complete\" \n \t \"-Average\" ");
 		System.out.println("Arg2:\n \t \"-Euclidean\" \n \t \"-Manhattan\" \n \t \"-Minkowski\"(wiht this metric is necessary to insert the k higher than 0) ");

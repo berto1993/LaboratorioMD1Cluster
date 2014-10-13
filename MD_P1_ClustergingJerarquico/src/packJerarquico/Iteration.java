@@ -32,6 +32,16 @@ public class Iteration
 		return iterationName;
 	}
 	
+	/**
+	 * Calcula cuales son los cluster mas cercanos, los une 
+	 * y devuelve un arraylist con el cluster unido sin los cluster
+	 * originales
+	 * @param pDistancia Tipo de distancia (Complete, Single, Average)
+	 * @param pMetrica Tipo de metrica (Minkowski, Manhattan, Euclidean)
+	 * @param k k de Minkoswki
+	 * @param clustN numero de cluster
+	 * @return
+	 */
 	public ArrayList<Cluster> mergeBestCluster(int pDistancia,int pMetrica,int k, int clustN)
 	{
 		calculateDistances(pDistancia, pMetrica, k);
@@ -62,6 +72,15 @@ public class Iteration
 	// distancias entre todos los cluster
 	// que hay en la iteracion y las ordenamos
 	// de mayor a menor
+	
+	/**
+	 * Calcula las distancias entre todos los clusters
+	 * y los guarda en distanceList, despues ordena 
+	 * distanceList de menor a mayor
+	 * @param pDistancia Tipo de distancia (Complete, Single, Average)
+	 * @param pMetrica Tipo de metrica (Minkowski, Manhattan, Euclidean)
+	 * @param k k de Minkoswki
+	 */
 	private void calculateDistances(int pDistancia,int pMetrica,int k)
 	{
 		Distance dist = null;
@@ -78,10 +97,7 @@ public class Iteration
 		Collections.sort(distanceList);
 	}
 	
-	//Con este método calculamos
-	// las distancias entre las instancias
-	// del cluster que hay en la iteración
-	// y las ordenamos de mayor a menor
+	
 	private void calculateDistanteInstances(int pMetrica,int k)
 	{
 		Distance dist = null;

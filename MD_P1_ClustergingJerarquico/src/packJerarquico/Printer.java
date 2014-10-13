@@ -44,7 +44,11 @@ public class Printer {
 			myPrinter = new Printer();
 		return myPrinter;
 	}
-
+	/**
+	 * Saca por pantalla el resultado de
+	 * cada iteracion
+	 * @param iteratList Lista de iteracines
+	 */
 	public void byScreenIteration(LinkedList<Iteration> iteratList) 
 	{
 		//Preparamos el texto que vamos
@@ -59,7 +63,12 @@ public class Printer {
 			System.out.println(text);
 		}
 	}
-
+	/**
+	 * Escribe en ficheros dentro de un directorio
+	 * los resultados de cada iteracion
+	 * @param iteratList Lista de iteraciones
+	 * @param path Ruta donde generar el directorio
+	 */
 	public void byTxtFile(LinkedList<Iteration> iteratList, String path) 
 	{
 		Iteration iterat = null;
@@ -87,6 +96,12 @@ public class Printer {
 		}
 	}
 
+	/**
+	 * Prepara un string para sacar por 
+	 * pantalla o fichero
+	 * @param iterat Una iteracion
+	 * @return
+	 */
 	private String prepareString(Iteration iterat) 
 	{	
 		Instance ins;
@@ -110,6 +125,11 @@ public class Printer {
 		return out;
 	}
 
+	/**
+	 * 
+	 * @param list Lista de iteraciones
+	 * @param path Ruta donde se va a guardar el fichero
+	 */
 	@SuppressWarnings("deprecation")
 	public void byPDF(LinkedList<Iteration> list, String path) 
 	{
@@ -211,6 +231,11 @@ public class Printer {
 			document.close();	
 	}
 	
+	/**
+	 * 
+	 * @param path ruta donde crear el fichero del dendograma
+	 * @param list lista de iteraciones
+	 */
 	public void createDendogram(String path, LinkedList<Iteration> list)
 	{
 		int instaCoor = 18;
@@ -244,7 +269,17 @@ public class Printer {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 
+	 * @param g El objeto que dibuja
+	 * @param clus El cluster a dibujar
+	 * @param width Anchura maxima 
+	 * @param maxHeight Altura maxima
+	 * @param instaCoor Separacion entre cluster
+	 * @param lW Posicion anterior X
+	 * @param lD Posicion anterior Y
+	 * @param izq booleano que indica si se dibuja a la izquierda o derecha
+	 */
 private void draw(Graphics g, Cluster clus, int width, int maxHeight,
 			int instaCoor, int lW, int lD, boolean izq) {
 		// TODO Auto-generated method stub
