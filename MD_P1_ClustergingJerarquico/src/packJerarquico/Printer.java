@@ -116,7 +116,6 @@ public class Printer {
 		out = out +"\t\t Instance \t\t Cluster \t\t  Iteración\n";
 		for (int i = 0; i < clusterL.size(); i++)
 		{
-			System.out.println(i + " de " +clusterL.size());
 			clus = clusterL.get(i);
 			it = clus.getInstances().iterator();
 			while (it.hasNext())
