@@ -46,7 +46,23 @@ public class Distancia
 			dist = Metrica.getMetrica().calculateMikowski(coordinate1, coordinate2, k);
 		
 		return dist;
+	}
+	
+	public float calculateMetricDivisive(float[] coordinate1, float[] coordinate2, int pMetrica , int k)
+	{
+		//	1 - Euclidean
+		//	2 - Manhattan
+		//	3 - Minkowski
+		float dist = 0;
+	
+		if (pMetrica == 1)
+			dist = Metrica.getMetrica().calculateEuclidean(coordinate1, coordinate2);
+		if (pMetrica == 2)
+			dist = Metrica.getMetrica().calculateManhattan(coordinate1, coordinate2);
+		if (pMetrica == 3)
+			dist = Metrica.getMetrica().calculateMikowski(coordinate1, coordinate2, k);
 		
+		return dist;
 	}
 
 	public float calculateComplete(Cluster cluster1, Cluster cluster2,	int pMetrica , int k)

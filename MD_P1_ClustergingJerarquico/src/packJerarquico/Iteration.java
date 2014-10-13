@@ -16,33 +16,14 @@ public class Iteration
 		clusterList = pClusterList;
 		distanceList = new LinkedList<Distance>();
 	}
-	
-	// Con este metodo calculamos las 
-	// distancias entre todos los cluster
-	// que hay en la iteracion y las ordenamos
-	// de mayor a menor
-	private void calculateDistances(int pDistancia,int pMetrica,int k)
-	{
-		Distance dist = null;
-		
-		for (int i = 0; i < clusterList.size(); i++)
-		{
-			for (int j = i+1; j < clusterList.size(); j++)
-			{
-				dist = new Distance(clusterList.get(i), clusterList.get(j));
-				dist.calculateDistance(pDistancia, pMetrica, k);
-				distanceList.addLast(dist);
-			}
-		}
-		Collections.sort(distanceList);
-	}
+
 	public int getClusterSize() 
 	{
 		return clusterList.size();
 	}
 	
-	
-	public ArrayList<Cluster> getClusterList() {
+	public ArrayList<Cluster> getClusterList()
+	{
 		return clusterList;
 	}
 	
@@ -67,13 +48,12 @@ public class Iteration
 		return clustArray;
 	}
 	
-	public ArrayList<Cluster> divideBestCluster(int pDistancia,int pMetrica,int k, int clustN)
+	public ArrayList<Cluster> divideBestCluster(int pMetrica,int k, int clustN)
 	{
-		calculateDistances(pDistancia, pMetrica, k);
+		calculateDistanteInstances(pMetrica, k);
 		Distance dist = distanceList.getLast();
 		ArrayList<Cluster> clustArray = (ArrayList<Cluster>) clusterList.clone();
-		clustArray.remove(dist.getCluster1());
-		//clustArray.remove(dist.getCluster2());
+		clustArray.add(dist.getCluster2());
 		
 		return clustArray;
 	}
@@ -82,15 +62,46 @@ public class Iteration
 	// distancias entre todos los cluster
 	// que hay en la iteracion y las ordenamos
 	// de mayor a menor
-	private void calculateDistanceInstances(int pDistancia,int pMetrica,int k)
+	private void calculateDistances(int pDistancia,int pMetrica,int k)
 	{
 		Distance dist = null;
 		
 		for (int i = 0; i < clusterList.size(); i++)
 		{
-			dist = new Distance(clusterList.get(i));
-			dist.calculateDistance(pDistancia, pMetrica, k);
-			distanceList.addLast(dist);
+			for (int j = i+1; j < clusterList.size(); j++)
+			{
+				dist = new Distance(clusterList.get(i), clusterList.get(j));
+				dist.calculateDistance(pDistancia, pMetrica, k);
+				distanceList.addLast(dist);
+			}
+		}
+		Collections.sort(distanceList);
+	}
+	
+	//Con este método calculamos
+	// las distancias entre las instancias
+	// del cluster que hay en la iteración
+	// y las ordenamos de mayor a menor
+	private void calculateDistanteInstances(int pMetrica,int k)
+	{
+		Distance dist = null;
+		Cluster clusterAux = null;
+				
+		for (int i = 0; i < clusterList.size(); i++)
+		{
+			clusterAux = clusterList.get(i);
+			if (clusterAux.getTamano() > 1)
+			{
+				dist = new Distance(clusterAux);
+				for (int a=0; a < clusterAux.getTamano(); a++)
+				{
+					for (int b=1; b < clusterAux.getTamano(); b++)
+					{
+						dist.calculateDistanceDivisive(a, b, pMetrica, k);
+						distanceList.addLast(dist);
+					}
+				}
+			}
 		}
 		Collections.sort(distanceList);
 	}
