@@ -48,8 +48,9 @@ public class Printer {
 	 * Saca por pantalla el resultado de
 	 * cada iteracion
 	 * @param iteratList Lista de iteracines
+	 * @param divisive 
 	 */
-	public void byScreenIteration(LinkedList<Iteration> iteratList) 
+	public void byScreenIteration(LinkedList<Iteration> iteratList, boolean divisive) 
 	{
 		//Preparamos el texto que vamos
 		// a sacar por pantalla
@@ -59,7 +60,7 @@ public class Printer {
 		while (it.hasNext())
 		{
 			iterat = it.next();
-			text = prepareString(iterat);
+			text = prepareString(iterat, divisive);
 			System.out.println(text);
 		}
 	}
@@ -68,8 +69,9 @@ public class Printer {
 	 * los resultados de cada iteracion
 	 * @param iteratList Lista de iteraciones
 	 * @param path Ruta donde generar el directorio
+	 * @param divisive 
 	 */
-	public void byTxtFile(LinkedList<Iteration> iteratList, String path) 
+	public void byTxtFile(LinkedList<Iteration> iteratList, String path, boolean divisive) 
 	{
 		Iteration iterat = null;
 		//File output = new File(path).getParentFile();
@@ -84,7 +86,7 @@ public class Printer {
 			{
 				iterat = it.next();
 				output = new FileWriter(directory.getPath() + "\\Iteration" + iterat.getIterationName() + ".txt");
-				text = prepareString(iterat);
+				text = prepareString(iterat, divisive);
 				printer = new PrintWriter(output);
 				printer.println(text);
 				printer.close();
@@ -100,9 +102,10 @@ public class Printer {
 	 * Prepara un string para sacar por 
 	 * pantalla o fichero
 	 * @param iterat Una iteracion
+	 * @param divisive 
 	 * @return
 	 */
-	private String prepareString(Iteration iterat) 
+	private String prepareString(Iteration iterat, boolean divisive) 
 	{	
 		Instance ins;
 		Iterator<Instance> it;
@@ -113,6 +116,7 @@ public class Printer {
 		out = out +"\t\t Instance \t\t Cluster \t\t  Iteración\n";
 		for (int i = 0; i < clusterL.size(); i++)
 		{
+			System.out.println(i + " de " +clusterL.size());
 			clus = clusterL.get(i);
 			it = clus.getInstances().iterator();
 			while (it.hasNext())
@@ -121,6 +125,7 @@ public class Printer {
 				out = out + "\t\t Instancia "+ ins.getName() + "\t\t Cluster " + clus.getNumber() +"\t\t  Iteración " + clus.getIteration() + "\n";
 			}
 		}
+		if (!divisive)
 		out = out + "\n \n" + "Se han unido los clusters " + iterat.getClusterList().get(iterat.getClusterList().size()-1).getLeftParent().getNumber() + " y " + iterat.getClusterList().get(iterat.getClusterList().size()-1).getRighttParent().getNumber() + " en el cluster " + iterat.getClusterList().get(iterat.getClusterList().size()-1).getNumber() + "\n"; 
 		return out;
 	}
@@ -129,9 +134,10 @@ public class Printer {
 	 * 
 	 * @param list Lista de iteraciones
 	 * @param path Ruta donde se va a guardar el fichero
+	 * @param divisive 
 	 */
 	@SuppressWarnings("deprecation")
-	public void byPDF(LinkedList<Iteration> list, String path) 
+	public void byPDF(LinkedList<Iteration> list, String path, boolean divisive) 
 	{
 		Iterator<Iteration> it = list.iterator();
 		Document document = new Document();
@@ -192,6 +198,7 @@ public class Printer {
 			}
 			try {
 				document.add(table);
+				if(!divisive)
 				document.add(new Paragraph("Se han unido los clusters " + clus.getLeftParent().getNumber() + " y " + clus.getRighttParent().getNumber() + " en el cluster " + clus.getNumber()));
 				document.newPage();
 			} catch (DocumentException e) {
@@ -200,6 +207,8 @@ public class Printer {
 			}
 			
 		}
+		if(!divisive)
+		{
 		  new PdfOutline(root, new PdfDestination(PdfDestination.FITH), "Dendograma" );
 			title = new Paragraph("Dendograma\n",  FontFactory.getFont("arial", 16, Font.BOLDITALIC, BaseColor.BLUE));
 			try {
@@ -227,7 +236,7 @@ public class Printer {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
+		}
 			document.close();	
 	}
 	

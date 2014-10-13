@@ -28,6 +28,7 @@ public class ListOfIterations
 	 */
 	public void divisiveClustering(String path, int metric, int k)
 	{
+		boolean divisive = true;
 		ArrayList<Cluster> divised;
 		System.out.println("Cargando instancias");
 		ListOfInstances.getListOfInstances().loadInstances(path);
@@ -43,10 +44,9 @@ public class ListOfIterations
 		}
 		
 		path = path + new Date().getTime();
-		/*Printer.getPrinter().byScreenIteration(list);
-		Printer.getPrinter().byTxtFile(list, path);
-		Printer.getPrinter().createDendogram(path, list);
-		Printer.getPrinter().byPDF(list, path);*/
+		Printer.getPrinter().byScreenIteration(list,divisive);
+		Printer.getPrinter().byTxtFile(list, path, divisive);
+		Printer.getPrinter().byPDF(list, path, divisive);
 		System.out.println("Clustering finalizado");
 	}
 	/**
@@ -78,7 +78,7 @@ public class ListOfIterations
 	 * @param k K para minkowski
 	 */
 	public void aglomerativeClustering(String path, int distance, int metric, int k)
-	{	
+	{	boolean divisive = false;
 		ArrayList<Cluster> merged;
 		System.out.println("Cargando instancias");
 		ListOfInstances.getListOfInstances().loadInstances(path);
@@ -96,10 +96,10 @@ public class ListOfIterations
 		}
 		
 		path = path + new Date().getTime();
-		Printer.getPrinter().byScreenIteration(list);
-		Printer.getPrinter().byTxtFile(list, path);
+		Printer.getPrinter().byScreenIteration(list, divisive);
+		Printer.getPrinter().byTxtFile(list, path,divisive);
 		Printer.getPrinter().createDendogram(path, list);
-		Printer.getPrinter().byPDF(list, path);
+		Printer.getPrinter().byPDF(list, path,divisive);
 		System.out.println("Clustering finalizado");
 	}
 
