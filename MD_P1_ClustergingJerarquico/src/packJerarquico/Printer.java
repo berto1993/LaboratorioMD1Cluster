@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -27,11 +26,9 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfDashPattern;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfDestination;
 import com.itextpdf.text.pdf.PdfOutline;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -55,7 +52,6 @@ public class Printer {
 		Iterator<Iteration> it = iteratList.iterator();
 		Iteration iterat = null;
 		String text = null;
-		String printable = null;
 		while (it.hasNext())
 		{
 			iterat = it.next();
@@ -114,6 +110,7 @@ public class Printer {
 		return out;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void byPDF(LinkedList<Iteration> list, String path) 
 	{
 		Iterator<Iteration> it = list.iterator();
@@ -134,41 +131,14 @@ public class Printer {
 	        Cluster clus = null;
 	        Instance ins = null;
 	        PdfOutline root = writer.getRootOutline();
-	        PdfOutline marcador = null;
 	        Paragraph title;
 	        PdfPTable table = null;
 	        document.addTitle(file.getName());
-	        PdfPCell cell = null;
-			marcador = new PdfOutline(root, new PdfDestination(PdfDestination.FITH), "Dendograma" );
-			title = new Paragraph("Dendograma\n",  FontFactory.getFont("arial", 16, Font.BOLDITALIC, BaseColor.BLUE));
-			try {
-				document.add(title);
-			} catch (DocumentException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			try {
-				document.add(Image.getInstance(new File(path + "/dendograma.jpg").toURL()));
-			} catch (BadElementException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			document.newPage();
-
-	        
+	      
 		while (it.hasNext())
 		{
 			aux = it.next();
-			marcador = new PdfOutline(root, new PdfDestination(PdfDestination.FITH), "Iteración " + aux.getIterationName());
+			new PdfOutline(root, new PdfDestination(PdfDestination.FITH), "Iteración " + aux.getIterationName());
 			title = new Paragraph("Iteración " + aux.getIterationName(),  FontFactory.getFont("arial", 16, Font.BOLDITALIC, BaseColor.BLUE));
 			try {
 				document.add(title);
@@ -179,10 +149,7 @@ public class Printer {
 			}
 			table = new PdfPTable(3); 
 			
-			/*cell = new PdfPCell(new Paragraph("Instancia",FontFactory.getFont("arial",Font.BOLD)));
-			cell.setHorizontalAlignment(50);
-
-			table.addCell(cell);*/
+			
 			table.addCell(new Paragraph("Instancia",FontFactory.getFont("arial",12, Font.BOLD)));
 			table.addCell(new Paragraph("Cluster",FontFactory.getFont("arial",12, Font.BOLD)));
 			table.addCell(new Paragraph("Iteración",FontFactory.getFont("arial",12, Font.BOLD)));
@@ -210,27 +177,52 @@ public class Printer {
 			} catch (DocumentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	
+			}
+			
 		}
+		  new PdfOutline(root, new PdfDestination(PdfDestination.FITH), "Dendograma" );
+			title = new Paragraph("Dendograma\n",  FontFactory.getFont("arial", 16, Font.BOLDITALIC, BaseColor.BLUE));
+			try {
+				document.add(title);
+			} catch (DocumentException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			Image img = null;
+			try {
+				img = Image.getInstance(new File(path + "/dendograma.jpg").toURL());
+				document.setPageSize(new Rectangle(img.getWidth(), img.getHeight()));
+				document.newPage();
+				document.add(img);
+			} catch (BadElementException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (DocumentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 			document.close();	
 	}
 	
 	public void createDendogram(String path, LinkedList<Iteration> list)
 	{
+		int instaCoor = 18;
 		File fichero = new File(path +"/Dendograma.jpg");
 		String formato = "jpg";
-		int width = 500;
-		int height = 600;
-		int maxHeight = 500;
+		int nInstancias = ListOfInstances.getListOfInstances().getSize();
+		int width = nInstancias * instaCoor + 100 ;
+		int height = nInstancias  * instaCoor +100;
+		int maxHeight = height - 100;
 		BufferedImage image = new BufferedImage(width, height,BufferedImage.TYPE_INT_RGB);
 		Iteration iter = null;
-		Instance inst;
-		int nInstancias = ListOfInstances.getListOfInstances().getSize();
 		Iterator<Iteration> itI = list.descendingIterator();
-		int[] instaCoor = new int[nInstancias];
-		initializeCoordinates(instaCoor, width, nInstancias);
-		float depth, previousDepth;
-		depth = 0;
 		Cluster clus = null;
 		Graphics2D g = (Graphics2D) image.getGraphics();
 		g.setColor(Color.WHITE);
@@ -254,12 +246,12 @@ public class Printer {
 	}
 
 private void draw(Graphics g, Cluster clus, int width, int maxHeight,
-			int[] instaCoor, int lW, int lD, boolean izq) {
+			int instaCoor, int lW, int lD, boolean izq) {
 		// TODO Auto-generated method stub
 		if (lW == 0 && lD == 0)
 		{
-			lW = lW + instaCoor[0];
-			lD = lD + instaCoor[0];
+			lW = lW + instaCoor;
+			lD = lD + instaCoor;
 			g.drawLine(lW, 0 , lW, lD);
 			if(clus.getLeftParent() != null)
 				draw(g, clus.getLeftParent(), width, maxHeight, instaCoor, lW, lD, true);
@@ -270,11 +262,10 @@ private void draw(Graphics g, Cluster clus, int width, int maxHeight,
 		{
 			if (izq)
 			{
-				g.drawLine(lW, lD, lW - instaCoor[0], lD);
-				lW = lW - instaCoor[0];
+				g.drawLine(lW, lD, lW - instaCoor, lD);
+				lW = lW - instaCoor;
 				if (clus.getLeftParent() == null && clus.getRighttParent() == null)
 				{
-					System.out.println(clus.getNumber());
 
 					g.drawLine(lW, lD, lW, maxHeight);
 					 // Create a rotation transformation for the font.
@@ -299,8 +290,8 @@ private void draw(Graphics g, Cluster clus, int width, int maxHeight,
 				}
 				else
 				{
-					g.drawLine(lW, lD, lW, lD + instaCoor[0]);
-					lD = lD + instaCoor[0];
+					g.drawLine(lW, lD, lW, lD + instaCoor);
+					lD = lD + instaCoor;
 					if(clus.getLeftParent() != null)
 						draw(g, clus.getLeftParent(), width, maxHeight, instaCoor, lW, lD, true);
 					if(clus.getRighttParent() != null)
@@ -310,13 +301,11 @@ private void draw(Graphics g, Cluster clus, int width, int maxHeight,
 			}
 			else
 			{
-				g.drawLine(lW, lD, lW + instaCoor[0], lD);
-				lW = lW + instaCoor[0];
+				g.drawLine(lW, lD, lW + instaCoor, lD);
+				lW = lW + instaCoor;
 				if (clus.getLeftParent() == null && clus.getRighttParent()==null)
 					{
 					g.drawLine(lW, lD, lW, maxHeight);
-					System.out.println(clus.getNumber());
-
 					g.drawLine(lW, lD, lW, maxHeight);
 					 // Create a rotation transformation for the font.
 				    AffineTransform fontAT = new AffineTransform();
@@ -338,10 +327,11 @@ private void draw(Graphics g, Cluster clus, int width, int maxHeight,
 				    // put the original font back
 				    g.setFont(theFont);
 					}
+				
 				else
 				{
-					g.drawLine(lW, lD, lW, lD + instaCoor[0]);
-					lD = lD + instaCoor[0];
+					g.drawLine(lW, lD, lW, lD + instaCoor);
+					lD = lD + instaCoor;
 					if(clus.getLeftParent() != null)
 						draw(g, clus.getLeftParent(), width, maxHeight, instaCoor, lW, lD, true);
 					if(clus.getRighttParent() != null)
@@ -351,15 +341,5 @@ private void draw(Graphics g, Cluster clus, int width, int maxHeight,
 		}
 	}
 
-	private void initializeCoordinates(int[] instaCoor, int width,
-			int nInstancias) {
-		// TODO Auto-generated method stub
-		int frac = (width/nInstancias);
-		
-		for (int i = 0; i < instaCoor.length; i++)
-		{
-			instaCoor[i] = frac*(i+1);
-		}
-	}
 
 }
