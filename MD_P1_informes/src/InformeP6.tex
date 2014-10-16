@@ -67,9 +67,56 @@ cuales 5 son numéricos y 1 de tipo string.
 \end{description}
 
 \section{Algoritmo}
+\subsection{Aglomerativo}
+\begin{center}
 
+\fbox{%
+\begin{varwidth}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
+\begin{enumerate}
+\item iteration $\leftarrow$ 1 
+\item while \{iteration < nº Instancias\}
+
+\subitem merge the best 2 clusters (the nearest) and add it in the cluster
+list after removing the merged clusters
+
+\subitem create a new Iteration including the new cluster list
+
+\subitem add the new Iteration to the last position of the list of
+iterations
+
+\item do iteration $\leftarrow$ iteration +1 
+
+\end{enumerate}
+	\end{varwidth}% 
+		
+	}
+\end{center}
 %Clustering jerarquico en pseudocodigo
 
+\subsection{Divisivo}
+\begin{center}
+
+\fbox{%
+\begin{varwidth}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
+\begin{enumerate}
+\item iteration $\leftarrow$ 1 
+\item while \{iteration < nº Instancias\}
+
+\subitem divide the best clusters (the furthest instances in the cluster) and
+add the new cluster to the cluster list
+
+\subitem create a new Iteration including the new cluster list
+
+\subitem add the new Iteration to the last position of the list of
+iterations
+
+\item do iteration $\leftarrow$ iteration +1 
+
+\end{enumerate}
+	\end{varwidth}% 
+		
+	}
+\end{center}
 \section{Diseño}
 
 %Diagrama de clases
