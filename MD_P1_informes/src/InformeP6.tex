@@ -25,6 +25,7 @@
 urlcolor=blue, pdftitle=Laboratorio 6: Clustering Jerarquico , pdfauthor= Alberto Fernández Arkaitz Marcos Endika Serrano}
 
 
+
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \title{\textbf{\huge{Mineria de Datos} \\Laboratorio 6: Clustering
 Jerarquico \newline
@@ -32,9 +33,7 @@ Jerarquico \newline
 1.4]{./images/Portada.jpg}\newline\footnote{Imagen extraida de
 \url{http://jmj-qa.blogspot.com.es/2011/09/analisis-cluster.html}}\end{center}}
 }
-%\title{\begin{center}\textbf{\Huge{Sistemas de Apoyo a la Decisión} \newline
-% \newline Práctica 2: Clasificación k-NN} \newline \begin{center}\includegraphics{./img/220px-KnnClassification.png}\footnote{Imagen extraida de \url{http://es.wikipedia.org/wiki/Knn}}\end{center} \newline 
-%\end{center}}
+
 
 \author{Alberto Fernández \and Arkaitz Marcos \and Endika Serrano}
 \date{}
@@ -47,11 +46,25 @@ Jerarquico \newline
 
 \newpage
 \renewcommand{\thefootnote}{\arabic{footnote}}
+
 \section{Introducción}
 
 \subsection{Definición}
-\cite{Witten}
+
 \subsection{Objetivo}
+
+El objetivo de esta práctica es el diseño e implementación de un algoritmo de
+clasificación no supervisada mediante la técnica del Clustering Jerárquico,
+tanto en su variante  como Aglomerativa como Divisiva.
+\bigskip
+
+Hemos utilizado principalmente los siguientes archivos:
+\begin{description}
+\item[color.arff]Este fichero cuenta con 62 instancias y 2001 atributos
+numéricos junto con la clase nominal.
+\item[food.arff]Este fichero cuenta con 24 instancias y 6 atributos, de los
+cuales 5 son numéricos y 1 de tipo string.
+\end{description}
 
 \section{Algoritmo}
 
