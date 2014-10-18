@@ -2,6 +2,8 @@ package packJerarquico;
 
 import java.util.LinkedList;
 
+import packDistancias.Distancia;
+
 public class Distance implements Comparable<Distance>
 {
 	

@@ -1,6 +1,9 @@
-package packJerarquico;
+package packDistancias;
 
 import java.util.LinkedList;
+
+import packJerarquico.Cluster;
+import packJerarquico.Instance;
 
 public class Distancia 
 {

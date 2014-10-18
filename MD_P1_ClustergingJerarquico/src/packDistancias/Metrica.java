@@ -1,4 +1,4 @@
-package packJerarquico;
+package packDistancias;
 
 public class Metrica 
 {

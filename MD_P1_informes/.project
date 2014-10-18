@@ -14,4 +14,11 @@
 	<natures>
 		<nature>net.sourceforge.texlipse.builder.TexlipseNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/bibliografia2.bib</name>
+			<type>1</type>
+			<location>C:/Users/Alberto/git/LaboratorioMD1Cluster/MD_P1_informes/src/bibliografia2.bib</location>
+		</link>
+	</linkedResources>
 </projectDescription>

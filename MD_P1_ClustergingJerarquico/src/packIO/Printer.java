@@ -1,4 +1,4 @@
-package packJerarquico;
+package packIO;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,6 +17,11 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
+
+import packJerarquico.Cluster;
+import packJerarquico.Instance;
+import packJerarquico.Iteration;
+import packJerarquico.ListOfInstances;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;

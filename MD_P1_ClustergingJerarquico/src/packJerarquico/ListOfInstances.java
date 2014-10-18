@@ -3,6 +3,8 @@ package packJerarquico;
 import java.rmi.server.LoaderHandler;
 import java.util.LinkedList;
 
+import packIO.Loader;
+
 public class ListOfInstances 
 {
 	private static ListOfInstances myListOfInstances = null;
