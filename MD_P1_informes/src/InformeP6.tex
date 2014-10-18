@@ -24,6 +24,7 @@
 \hypersetup{ colorlinks=true, linkcolor=black, citecolor=black, filecolor=black,
 urlcolor=blue, pdftitle=Laboratorio 6: Clustering Jerarquico , pdfauthor= Alberto Fernández Arkaitz Marcos Endika Serrano}
 
+\bibliographystyle{plain}
 
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
@@ -37,7 +38,6 @@ Jerarquico \newline
 
 \author{Alberto Fernández \and Arkaitz Marcos \and Endika Serrano}
 \date{}
-\bibliographystyle{alpha}
 
 \begin{document}
 \maketitle
@@ -49,31 +49,37 @@ Jerarquico \newline
 
 \section{Introducción}
 
+El objetivo de esta práctica es la programación de un algoritmo de clustering
+jerárquico evitando la utilización de librerías de terceros y tratando de
+mejorar el rendimiento frente a programas de minería de datos de uso general
+como puede ser \textbf{Weka}.
+
+
 \subsection{Definición}
  
 \paragraph{Clasificación no-supervisada:\\}
-Los problemas en los que los datos de entrenamiento son vectores x sin una clase
-definida son conocidos como problemas de clasificación no
-supervisada.[\ref{Bishop}, Página 3, 2º Párrafo]
+Los métodos de clasificación en los que los datos de entrenamiento son vectores
+x sin una clase definida.
+\cite{Bishop}, Página 3, 2º Párrafo
 
 La clasificación no supervisada tiene como objetivo la agrupación de datos en
 grupos, estas agrupaciones tienen valor por sí mismas y su clasificación no
 tiene interés.para ello emplea la similitud/disimilitud entre los atributos de
 las distintas instancias para poder realizar la “clasificación” sin contar con
 la clase definida que le indique la clasificación correcta o el grado de error
-en las distintas predicciones.[\ref{Elements}, Página 486,
-3ºlinea][\ref{Handbook}, Sección 14.1, 1º Párrafo]
-
+en las distintas predicciones.\cite{Elements} , Página 486,
+3ºlinea \[\cite{Handbook}, Sección 14.1, 1º Párrafo\]
 
 \subsection{Objetivo}
-
 El objetivo de esta práctica es el diseño e implementación de un algoritmo de
 clasificación no supervisada mediante la técnica del Clustering Jerárquico,
 tanto en su variante  como Aglomerativa como Divisiva evitando la utilización de
 librerías de terceros.
+
 \bigskip
 
 Hemos utilizado principalmente los siguientes archivos:
+
 \begin{description}
 \item[color.arff]Este fichero cuenta con 62 instancias y 2001 atributos
 numéricos junto con la clase nominal.
@@ -84,7 +90,6 @@ cuales 5 son numéricos y 1 de tipo string.
 \section{Algoritmo}
 \subsection{Aglomerativo}
 \begin{center}
-
 \fbox{%
 \begin{varwidth}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
 \begin{enumerate}
@@ -138,7 +143,7 @@ iterations
 \centering
 \includegraphics[scale = 0.18]{images/DiagramaP}
 \end{figure}
-ajfjdkljakljflkasjfkladjfaljfkajfkajdfklajfajsdfkjadslfjadslfjasdkfjasdkljflasdkjfajdfkladsjflakjfklasdjfñljasfjalskfjaskljfkajfkñlasdj
+
 Si no pongo esto ahora el titulo se queda por debajo
 \section{Resultados experimentales}
 
@@ -156,8 +161,7 @@ Si no pongo esto ahora el titulo se queda por debajo
 
 \section{Bibliografía}
 
-%Con estos comandos obtenemos todas las referencias bibliogr�ficas que se hacen
-% en el texto, obtenidas en las BD que le indicamos en el siguiente comando, se pueden indicar m�s de una BD, separadas por comas.
-%\bibliography{bibliografia}
-\section{Valoración subjetiva}
+\bibliography{bibliografia}
+
+%\section{Valoración subjetiva}
 \end{document}
