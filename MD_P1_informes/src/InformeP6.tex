@@ -144,7 +144,91 @@ iterations
 \includegraphics[scale = 0.18]{images/DiagramaP}
 \end{figure}
 
-Si no pongo esto ahora el titulo se queda por debajo
+\subsection{packIO}
+En este paquete se agrupan las clases cuya funcionalidad principal es la entrada
+y salida de datos.
+
+\subsubsection{Loader}
+Esta clase se encarga de cargar en la aplicación los datos contenidos en los
+ficheros \textit{arff}.
+
+\subsubsection{Printer}
+Esta clase es la encargada de representar los datos. Sus principales
+funcionalidades son la salida por pantalla de los resultados obtenidos, la
+creación de un dendograma que represente los datos, y la salida a ficheros de
+esos datos como txt y pdf.
+
+\subsection{packDistancias}
+\label{packDistancias}
+En este paquete se agrupan las clases cuya funcionalidad principal es el calculo
+de distancias entre instancias.
+
+\subsubsection{Metrica}
+Esta clase es la encargada de realizar los calculos de distanciasentre
+instancias utilizando distintas metricas:
+\begin{itemize}
+  \item Euclidea
+  \item Manhattan
+  \item Minkowski
+\end{itemize}
+
+\subsubsection{Distancia}
+Esta clase es la encargada de realizar los calculos de distancias en conjunto
+con la clase Metrica utilizando distintas metricas:
+\begin{itemize}
+  \item Complete
+  \item Simple
+  \item Average
+\end{itemize}
+
+\subsection{packJerarquico}
+En este paquete se agrupan las clases cuya función es la ejecución de los
+algoritmos de clustering jerarquico y las clases necesarias para almacenar las
+estructuras generadas por los mismos.
+
+\subsubsection{Main}
+Es la clase encargada de capturar los argumentos necesarios para la ejecución
+del programa y una vez recogidos lanzar el proceso.
+ 
+\subsubsection{ListofIterations}
+Esta clase es la encargada de guardar las iteraciones generadas durante la
+ejecución del algoritmo de clustering. Ademas es la clase que realiza el
+clustering en sus variantes:
+\begin{itemize}
+  \item Aglomerativo
+  \item Divisivo
+\end{itemize}
+
+\subsubsection{Iteration}
+Esta clase es la encargada de guardar la lista de clusters que hay durante la
+iteración así como el nombre de la iteración y una lista con las distancias
+entre los clusters de la lista anterior.
+
+Es la encargada de generar nuevos clusters e incluirlos en una nueva iteración,
+tanto uniendo dos clusters como dividiendo uno.
+
+\subsubsection{Cluster}
+Esta clase almacena el numero (nombre) del cluster, las intancias que lo forman,
+su centroide, la iteración en la que se ha creado así como los clusters a partir
+del cual se ha generado.
+
+\subsubsection{Distance}
+Esta clase almacena la distancia entre dos clusters así como los clusters entre
+los cuales se calculado la distancia.
+
+Es tambien la encargada de calcular la distancia llamando a las clases
+contenidas en el
+\ref{packDistancias}\textit{packDistancias}\ref{packDistancias}.
+
+\subsubsection{ListOfInstances}
+Es la clase encargada de almacenar las distintas instancias que se van a
+utilizar en la aplicación.
+
+\subsubsection{Instances}
+Es la clase que almacena el nombre de cada instancia y los atributos que la
+forman, esta aplicación solamente soporta atributos numéricos, por lo que
+solamente se almacenan atributos numéricos.
+
 \section{Resultados experimentales}
 
 \subsection{Banco de pruebas}
@@ -163,5 +247,5 @@ Si no pongo esto ahora el titulo se queda por debajo
 
 \bibliography{bibliografia}
 
-%\section{Valoración subjetiva}
+\section{Valoración subjetiva}
 \end{document}
