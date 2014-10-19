@@ -22,7 +22,7 @@
 
 
 \hypersetup{ colorlinks=true, linkcolor=black, citecolor=black, filecolor=black,
-urlcolor=blue, pdftitle=Laboratorio 6: Clustering Jerarquico , pdfauthor= Alberto FernÃ¡ndez Arkaitz Marcos Endika Serrano}
+urlcolor=blue, pdftitle=Laboratorio 6: Clustering Jerarquico , pdfauthor= Alberto Fernández Arkaitz Marcos Endika Serrano}
 
 \bibliographystyle{plain}
 
@@ -36,7 +36,7 @@ Jerarquico \newline
 }
 
 
-\author{Alberto FernÃ¡ndez \and Arkaitz Marcos \and Endika Serrano}
+\author{Alberto Fernández \and Arkaitz Marcos \and Endika Serrano}
 \date{}
 
 \begin{document}
@@ -47,43 +47,43 @@ Jerarquico \newline
 \newpage
 \renewcommand{\thefootnote}{\arabic{footnote}}
 
-\section{IntroducciÃ³n}
+\section{Introducción}
 
-El objetivo de esta prÃ¡ctica es la programaciÃ³n de un algoritmo de clustering
-jerÃ¡rquico evitando la utilizaciÃ³n de librerÃ­as de terceros y tratando de
-mejorar el rendimiento frente a programas de minerÃ­a de datos de uso general
+El objetivo de esta práctica es la programación de un algoritmo de clustering
+jerárquico evitando la utilización de librerías de terceros y tratando de
+mejorar el rendimiento frente a programas de minería de datos de uso general
 como puede ser \textbf{Weka}.
 
 
-\subsection{DefiniciÃ³n}
+\subsection{Definición}
  
-\paragraph{ClasificaciÃ³n no-supervisada:\\}
-Los mÃ©todos de clasificaciÃ³n en los que los datos de entrenamiento son vectores
-x sin una clase definida.\cite[PÃ¡gina 3, 2Âº PÃ¡rrafo]{Bishop} 
+\paragraph{Clasificación no-supervisada:\\}
+Los métodos de clasificación en los que los datos de entrenamiento son vectores
+x sin una clase definida.\cite[Página 3, 2º Párrafo]{Bishop} 
 
 
-La clasificaciÃ³n no supervisada tiene como objetivo la agrupaciÃ³n de datos en
-grupos, estas agrupaciones tienen valor por sÃ­ mismas y su clasificaciÃ³n no
-tiene interÃ©s.para ello emplea la similitud/disimilitud entre los atributos de
-las distintas instancias para poder realizar la â€œclasificaciÃ³nâ€� sin contar con
-la clase definida que le indique la clasificaciÃ³n correcta o el grado de error
-en las distintas predicciones.\cite[PÃ¡gina 486,3Âºlinea]{Elements}  
-\cite[SecciÃ³n 14.1, 1Âº PÃ¡rrafo]{Handbook}
+La clasificación no supervisada tiene como objetivo la agrupación de datos en
+grupos, estas agrupaciones tienen valor por sí mismas y su clasificación no
+tiene interés.para ello emplea la similitud/disimilitud entre los atributos de
+las distintas instancias para poder realizar la “clasificación” sin contar con
+la clase definida que le indique la clasificación correcta o el grado de error
+en las distintas predicciones.\cite[Página 486,3ºlinea]{Elements}  
+\cite[Sección 14.1, 1º Párrafo]{Handbook}
 
 
 \subsection{Objetivo}
-El objetivo de esta prÃ¡ctica es el diseÃ±o e implementaciÃ³n de un algoritmo de
-clasificaciÃ³n no supervisada mediante la tÃ©cnica del Clustering JerÃ¡rquico,
-tanto en su variante  como Aglomerativa como Divisiva evitando la utilizaciÃ³n de
-librerÃ­as de terceros.
+El objetivo de esta práctica es el diseño e implementación de un algoritmo de
+clasificación no supervisada mediante la técnica del Clustering Jerárquico,
+tanto en su variante  como Aglomerativa como Divisiva evitando la utilización de
+librerías de terceros.
 \bigskip
 Hemos utilizado principalmente los siguientes archivos:
 %
 \begin{description}
 \item[color.arff]Este fichero cuenta con 62 instancias y 2001 atributos
-numÃ©ricos junto con la clase nominal.
+numéricos junto con la clase nominal.
 \item[food.arff]Este fichero cuenta con 24 instancias y 6 atributos, de los
-cuales 5 son numÃ©ricos y 1 de tipo string.
+cuales 5 son numéricos y 1 de tipo string.
 \end{description}
 
 \section{Algoritmo}
@@ -93,7 +93,7 @@ cuales 5 son numÃ©ricos y 1 de tipo string.
 \begin{varwidth}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
 \begin{enumerate}
 \item iteration $\leftarrow$ 1 
-\item while \{iteration < nÂº Instancias\}
+\item while \{iteration < nº Instancias\}
 
 \subitem merge the best 2 clusters (the nearest) and add it in the cluster
 list after removing the merged clusters
@@ -119,7 +119,7 @@ iterations
 \begin{varwidth}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
 \begin{enumerate}
 \item iteration $\leftarrow$ 1 
-\item while \{iteration < nÂº Instancias\}
+\item while \{iteration < nº Instancias\}
 
 \subitem divide the best clusters (the furthest instances in the cluster) and
 add the new cluster to the cluster list
@@ -137,7 +137,7 @@ iterations
 	}
 \end{center}
 
-\section{DiseÃ±o}
+\section{Diseño}
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale = 0.18]{images/DiagramaP}
@@ -148,13 +148,13 @@ En este paquete se agrupan las clases cuya funcionalidad principal es la entrada
 y salida de datos.
 
 \subsubsection{Loader}
-Esta clase se encarga de cargar en la aplicaciÃ³n los datos contenidos en los
+Esta clase se encarga de cargar en la aplicación los datos contenidos en los
 ficheros \textit{arff}.
 
 \subsubsection{Printer}
 Esta clase es la encargada de representar los datos. Sus principales
 funcionalidades son la salida por pantalla de los resultados obtenidos, la
-creaciÃ³n de un dendograma que represente los datos, y la salida a ficheros de
+creación de un dendograma que represente los datos, y la salida a ficheros de
 esos datos como txt y pdf.
 
 \subsection{packDistancias}
@@ -163,8 +163,8 @@ En este paquete se agrupan las clases cuya funcionalidad principal es el calculo
 de distancias entre instancias.
 
 \subsubsection{Metrica}
-Esta clase es la encargada de realizar los cÃ¡lculos de distancias entre
-instancias utilizando distintas mÃ©tricas:
+Esta clase es la encargada de realizar los cálculos de distancias entre
+instancias utilizando distintas métricas:
 \begin{itemize}
   \item Euclidea
   \item Manhattan
@@ -172,8 +172,8 @@ instancias utilizando distintas mÃ©tricas:
 \end{itemize}
 
 \subsubsection{Distancia}
-Esta clase es la encargada de realizar los cÃ¡lculos de distancias en conjunto
-con la clase Metrica utilizando distintas mÃ©tricas:
+Esta clase es la encargada de realizar los cálculos de distancias en conjunto
+con la clase Metrica utilizando distintas métricas:
 \begin{itemize}
   \item Complete
   \item Simple
@@ -181,17 +181,17 @@ con la clase Metrica utilizando distintas mÃ©tricas:
 \end{itemize}
 
 \subsection{packJerarquico}
-En este paquete se agrupan las clases cuya funciÃ³n es la ejecuciÃ³n de los
-algoritmos de clustering jerÃ¡rquico y las clases necesarias para almacenar las
+En este paquete se agrupan las clases cuya función es la ejecución de los
+algoritmos de clustering jerárquico y las clases necesarias para almacenar las
 estructuras generadas por los mismos.
 
 \subsubsection{Main}
-Es la clase encargada de capturar los argumentos necesarios para la ejecuciÃ³n
+Es la clase encargada de capturar los argumentos necesarios para la ejecución
 del programa y una vez recogidos lanzar el proceso.
  
 \subsubsection{ListofIterations}
 Esta clase es la encargada de guardar las iteraciones generadas durante la
-ejecuciÃ³n del algoritmo de clustering. Ademas es la clase que realiza el
+ejecución del algoritmo de clustering. Ademas es la clase que realiza el
 clustering en sus variantes:
 \begin{itemize}
   \item Aglomerativo
@@ -200,42 +200,42 @@ clustering en sus variantes:
 
 \subsubsection{Iteration}
 Esta clase es la encargada de guardar la lista de clusters que hay durante la
-iteraciÃ³n asÃ­ como el nombre de la iteraciÃ³n y una lista con las distancias
+iteración así como el nombre de la iteración y una lista con las distancias
 entre los clusters de la lista anterior.
 
-Es la encargada de generar nuevos clusters e incluirlos en una nueva iteraciÃ³n,
+Es la encargada de generar nuevos clusters e incluirlos en una nueva iteración,
 tanto uniendo dos clusters como dividiendo uno.
 
 \subsubsection{Cluster}
 Esta clase almacena el numero (nombre) del cluster, las instancias que lo forman,
-su centroide, la iteraciÃ³n en la que se ha creado asÃ­ como los clusters a partir
+su centroide, la iteración en la que se ha creado así como los clusters a partir
 del cual se ha generado.
 
 \subsubsection{Distance}
-Esta clase almacena la distancia entre dos clusters asÃ­ como los clusters entre
+Esta clase almacena la distancia entre dos clusters así como los clusters entre
 los cuales se calculado la distancia.
 
-Es tambiÃ©n la encargada de calcular la distancia llamando a las clases
+Es también la encargada de calcular la distancia llamando a las clases
 contenidas en el
 \ref{packDistancias}\textit{packDistancias}\ref{packDistancias}.
 
 \subsubsection{ListOfInstances}
 Es la clase encargada de almacenar las distintas instancias que se van a
-utilizar en la aplicaciÃ³n.
+utilizar en la aplicación.
 
 \subsubsection{Instances}
 Es la clase que almacena el nombre de cada instancia y los atributos que la
-forman, esta aplicaciÃ³n solamente soporta atributos numÃ©ricos, por lo que
-solamente se almacenan atributos numÃ©ricos.
+forman, esta aplicación solamente soporta atributos numéricos, por lo que
+solamente se almacenan atributos numéricos.
 
 
 \section{Resultados experimentales}
 
 \subsection{Banco de pruebas}
-Para realizar las pruebas hemos empleado la versiÃ³n final de la aplicaciÃ³n y el
-fichero food.arff. hemos empleado tanto la versiÃ³n aglomerativa como la divisiva
-del algoritmo en todas las variantes de mÃ©trica(Euclidean, Minkoswki, Manhattan)
-y cÃ¡lculo de distancia(Simple, Complete, Average) empleando para Minkowski k = 7
+Para realizar las pruebas hemos empleado la versión final de la aplicación y el
+fichero food.arff. hemos empleado tanto la versión aglomerativa como la divisiva
+del algoritmo en todas las variantes de métrica(Euclidean, Minkoswki, Manhattan)
+y cálculo de distancia(Simple, Complete, Average) empleando para Minkowski k = 7
 
 
 \subsection{Resultados obtenidos}
@@ -309,31 +309,31 @@ y cÃ¡lculo de distancia(Simple, Complete, Average) empleando para Minkowski k 
 
 \subsection{Resultados respecto a otro software}
 
-\subsection{AnÃ¡lisis de resultados}
+\subsection{Análisis de resultados}
 
 
 \subsection{Rendimiento del software}
-Con respecto al rendimiento simplemente seÃ±alar que la variante aglomerativa
-tarda mÃ¡s que la variante divisiva por el mero hecho de que esta Ãºltima no
+Con respecto al rendimiento simplemente señalar que la variante aglomerativa
+tarda más que la variante divisiva por el mero hecho de que esta última no
 genera un dendograma al acabar de ejecutarse.
 
 \section{Conclusiones}
-La motivaciÃ³n principal para aplicar tÃ©cnicas de clustering es agrupar grandes
-conjuntos de datos de forma que se cada grupo formado tenga unas caracterÃ­sticas similares y de esta forma sea posible analizar los datos sin un inmenso coste temporal.
+La motivación principal para aplicar técnicas de clustering es agrupar grandes
+conjuntos de datos de forma que se cada grupo formado tenga unas características similares y de esta forma sea posible analizar los datos sin un inmenso coste temporal.
 
 Se observa un gran aumento de rendimiento respecto a las aplicaciones con
-interfaz grÃ¡fica y de uso menos especÃ­fico (\textit{Weka}). AdemÃ¡s el dendograma generado es de menor complejidad y mayor comprensiÃ³n a pesar de que no indica las distancias de uniÃ³n.
+interfaz gráfica y de uso menos específico (\textit{Weka}). Además el dendograma generado es de menor complejidad y mayor comprensión a pesar de que no indica las distancias de unión.
 
-Uno de los cambios mÃ¡s significativos podrÃ­a ser el que aceptase archivos
+Uno de los cambios más significativos podría ser el que aceptase archivos
 \textit{CSV} para ahorrar tiempo del usuario en convertirlo a \textit{ARFF}.
  
-Se podrÃ­a mejorar el dendograma de forma que aparecieran las distancias de la
-uniÃ³n entre clusters para una mayor comprensiÃ³n visual. 
+Se podría mejorar el dendograma de forma que aparecieran las distancias de la
+unión entre clusters para una mayor comprensión visual. 
 
-SerÃ­a interesante mejorar el algoritmo divisivo de forma que aparezca el
+Sería interesante mejorar el algoritmo divisivo de forma que aparezca el
 dendograma.
 
-\section{BibliografÃ­a}
+\section{Bibliografía}
 \renewcommand{\refname}{\ }
 
 \begin{thebibliography}{1}
@@ -357,93 +357,97 @@ dendograma.
 	
 \end{thebibliography}
 
-\section{ValoraciÃ³n subjetiva}
+\section{Valoración subjetiva}
 
-\subsection{Alberto FernÃ¡ndez}
-\paragraph{Â¿Has alcanzado los objetivos que se plantean?\\}
-SÃ­, creo que he alcanzado los objetivos que se plantean para esta prÃ¡ctica.
+\subsection{Alberto Fernández}
+\paragraph{¿Has alcanzado los objetivos que se plantean?\\}
+Sí, creo que he alcanzado los objetivos que se plantean para esta práctica.
 
-\paragraph{Â¿Te ha resultado de utilidad la tarea planteada?\\}
+\paragraph{¿Te ha resultado de utilidad la tarea planteada?\\}
 Esta tarea me ha resultado de utilidad para ver mis capacidades para afrontar
-una un problema 'nuevo' de forma mÃ¡s o menos autÃ³noma.
+una un problema 'nuevo' de forma más o menos autónoma.
 
-\paragraph{Â¿QuÃ© dificultades has encontrado? Valora el grado de dificultad de
+\paragraph{¿Qué dificultades has encontrado? Valora el grado de dificultad de
 la tarea\\}
 La mayor dificultad con la que me he encontrado ha sido el desconocimiento sobre
-este tipo de problemas y la improvisaciÃ³n a la que me ha llevado dicho desconocimiento.
+este tipo de problemas y la improvisación a la que me ha llevado dicho desconocimiento.
 
-\paragraph{Â¿CuÃ¡nto tiempo has trabajado en esta tarea? Desglosado:\\}
+\paragraph{¿Cuánto tiempo has trabajado en esta tarea? Desglosado:\\}
 \begin{description}
-	\item[Tiempo de diseÃ±o de software] 2h
-	\item[Tiempo de implementaciÃ³n de software] 26h
+	\item[Tiempo de diseño de software] 2h
+	\item[Tiempo de implementación de software] 30h
 	\item[Tiempo trabajando con Weka] 0h
-	\item[Tiempo dedicado a bÃºsqueda bibliogrÃ¡fica] 3h
-	\item[Tiempo redactando el informe] 10h (problemas durante la ediciÃ³n)
+	\item[Tiempo dedicado a búsqueda bibliográfica] 3h
+	\item[Tiempo redactando el informe] 10h (problemas durante la edición)
 \end{description}
 
 \paragraph{Sugerencias para mejorar la tarea. Sugerencias para que se consiga despertar mayor
-interÃ©s y motivaciÃ³n en los alumnos.\\}
+interés y motivación en los alumnos.\\}
 
-\paragraph{CrÃ­ticas (constructivas).\\}
-El enunciado de la tarea podrÃ­a estar desglosado para el algoritmo
-\textit{k-means} y \textit{clustering jerÃ¡rquico} para de esta forma evitar confusiones.
+\paragraph{Críticas (constructivas).\\}
+El enunciado de la tarea podría estar desglosado para el algoritmo
+\textit{k-means} y \textit{clustering jerárquico} para de esta forma evitar confusiones.
 
 \subsection{Arkaitz Marcos}
-\paragraph{Â¿Has alcanzado los objetivos que se plantean?\\}
+\paragraph{¿Has alcanzado los objetivos que se plantean?\\}
 Sí, en mi opinión si he logrado alcanzar los objetivos planteados.
 
-\paragraph{Â¿Te ha resultado de utilidad la tarea planteada?\\}
-Sí, ya que me ha ayudado a superar los obstaculos encontrados y la frustación
+
+\paragraph{¿Te ha resultado de utilidad la tarea planteada?\\}
+Sí, ya que me ha ayudado a superar los obstáculos encontrados y la frustración
 ante los fallos cometidos.
 
-\paragraph{Â¿QuÃ© dificultades has encontrado? Valora el grado de dificultad de
+\paragraph{¿Qué dificultades has encontrado? Valora el grado de dificultad de
 la tarea\\}
 La primera de las dificultades encontradas ha sido el planteamiento de la
 implementación del algoritmo sin utilizar las librerías de weka, aunque también
 fue una de las más fáciles de solucionar.
+
 Otra de las dificultades más complicadas ha sido intentar dibujar el dendograma
 del algoritmo divisivo el cual finalmente no ha podido desarrollarse.
+
 El grado de dificultad ha sido medio.
 
-\paragraph{Â¿CuÃ¡nto tiempo has trabajado en esta tarea? Desglosado:\\}
+\paragraph{¿Cuánto tiempo has trabajado en esta tarea? Desglosado:\\}
 \begin{description}
-	\item[Tiempo de diseÃ±o de software] 1h
-	\item[Tiempo de implementaciÃ³n de software] 18h
+	\item[Tiempo de diseño de software] 1h
+	\item[Tiempo de implementación de software] 18h
 	\item[Tiempo trabajando con Weka] 0h
-	\item[Tiempo dedicado a bÃºsqueda bibliogrÃ¡fica] 0h
-	\item[Tiempo redactando el informe] 2h
+	\item[Tiempo dedicado a búsqueda bibliográfica] 0h
+	\item[Tiempo redactando el informe] 0h
 \end{description}
 
 \paragraph{Sugerencias para mejorar la tarea. Sugerencias para que se consiga despertar mayor
-interÃ©s y motivaciÃ³n en los alumnos.\\}
+interés y motivación en los alumnos.\\}
 La tarea esta bien especificada para su realización y cumplimiento de los
 objetivos. Ninguna sugerencia.
 
-\paragraph{CrÃ­ticas (constructivas).\\}
-Estoy de acuerdo con Alberto en cuando al desglose del enunciado de la tarea.
+
+\paragraph{Críticas (constructivas).\\}
+Estoy de acuerdo con Alberto en cuanto al desglose del enunciado de la tarea.
 
 \subsection{Endika Serrano}
-\paragraph{Â¿Has alcanzado los objetivos que se plantean?\\}
-SÃ­, al menos los principales se han alcanzado.
-\paragraph{Â¿Te ha resultado de utilidad la tarea planteada?\\}
-SÃ­, esta prÃ¡ctica nos ha ayudado a aprender a programar sin usar las librerÃ­as de Weka y eso nos ha supuesto un reto.
- \paragraph{Â¿QuÃ© dificultades has encontrado? Valora el grado de dificultad de
+\paragraph{¿Has alcanzado los objetivos que se plantean?\\}
+Sí, al menos los principales se han alcanzado.
+\paragraph{¿Te ha resultado de utilidad la tarea planteada?\\}
+Sí, esta práctica nos ha ayudado a aprender a programar sin usar las librerías de Weka y eso nos ha supuesto un reto.
+ \paragraph{¿Qué dificultades has encontrado? Valora el grado de dificultad de
 la tarea\\}
 El empezar algo de cero con total desconocimiento. El grado de dificultad ha
 sido alto.
-\paragraph{Â¿CuÃ¡nto tiempo has trabajado en esta tarea? Desglosado:\\}
+\paragraph{¿Cuánto tiempo has trabajado en esta tarea? Desglosado:\\}
 \begin{description}
-	\item[Tiempo de diseÃ±o de software] 2h
-	\item[Tiempo de implementaciÃ³n de software] 8h
+	\item[Tiempo de diseño de software] 2h
+	\item[Tiempo de implementación de software] 8h
 	\item[Tiempo trabajando con Weka] 5h
-	\item[Tiempo dedicado a bÃºsqueda bibliogrÃ¡fica] 1h
+	\item[Tiempo dedicado a búsqueda bibliográfica] 1h
 	\item[Tiempo redactando el informe] 1h
 \end{description}
 
 \paragraph{Sugerencias para mejorar la tarea. Sugerencias para que se consiga despertar mayor
-interÃ©s y motivaciÃ³n en los alumnos.\\}
+interés y motivación en los alumnos.\\}
 
-\paragraph{CrÃ­ticas (constructivas).\\}
-EstarÃ­a bien que el clustering jerÃ¡rquico tuviese su propio apartado y no tener
+\paragraph{Críticas (constructivas).\\}
+Estaría bien que el clustering jerárquico tuviese su propio apartado y no tener
 que usar el guion del k-means.
 \end{document}
