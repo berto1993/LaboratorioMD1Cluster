@@ -232,6 +232,11 @@ solamente se almacenan atributos numéricos.
 \section{Resultados experimentales}
 
 \subsection{Banco de pruebas}
+Para realizar las pruebas hemos empleado la versión final de la aplicación y el
+fichero food.arff. hemos empleado tanto la versión aglomerativa como la divisiva
+del algoritmo en todas las variantes de métrica(Euclidean, Minkoswki, Manhattan)
+y cálculo de distancia(Simple, Complete, Average) empleando para Minkowski k = 7
+
 
 \subsection{Resultados obtenidos}
 \paragraph{Clustering Aglomerativo\\}
@@ -243,7 +248,7 @@ solamente se almacenan atributos numéricos.
 	\subitem Manhattan
 		\subsubitem Tiempo: 2s
   		\subsubitem Fichero de resultados: food.arff1413736110243.pdf
-	\subitem Minkowki k = 7
+	\subitem Minkowski k = 7
 		\subsubitem Tiempo: 3s 
   		\subsubitem Fichero de resultados: food.arff1413736304808.pdf 	
   \item Complete
@@ -253,7 +258,7 @@ solamente se almacenan atributos numéricos.
 	\subitem Manhattan
 		\subsubitem Tiempo: 2s
   		\subsubitem Fichero de resultados: food.arff1413736535402.pdf 
-	\subitem Minkowki k = 7
+	\subitem Minkowski k = 7
 		\subsubitem Tiempo: 2s
   		\subsubitem Fichero de resultados: food.arff1413736641739.pdf 	
   \item Average
@@ -263,7 +268,7 @@ solamente se almacenan atributos numéricos.
 	\subitem Manhattan
 		\subsubitem Tiempo: 2s
   		\subsubitem Fichero de resultados: food.arff1413736777966.pdf
-	\subitem Minkowki k = 7
+	\subitem Minkowski k = 7
 		\subsubitem Tiempo: 2s
   		\subsubitem Fichero de resultados: food.arff1413736821139.pdf	
 \end{itemize}
@@ -272,41 +277,45 @@ solamente se almacenan atributos numéricos.
 \begin{itemize}
   \item Simple
   	\subitem Euclidean
-  		\subsubitem Tiempo: 
-  		\subsubitem Fichero de resultados: 
+  		\subsubitem Tiempo: 2s
+  		\subsubitem Fichero de resultados: food.arff1413738583516.pdf
 	\subitem Manhattan
-		\subsubitem Tiempo: 
-  		\subsubitem Fichero de resultados: 
-	\subitem Minkowki k = 7
-		\subsubitem Tiempo: 
-  		\subsubitem Fichero de resultados: 	
+		\subsubitem Tiempo: 2s
+  		\subsubitem Fichero de resultados: food.arff1413738547888.pdf
+	\subitem Minkowski k = 7
+		\subsubitem Tiempo: 2s
+  		\subsubitem Fichero de resultados: food.arff1413738467626.pdf	
   \item Complete
 	\subitem Euclidean
-  		\subsubitem Tiempo: 
-  		\subsubitem Fichero de resultados: 
+  		\subsubitem Tiempo: 2s
+  		\subsubitem Fichero de resultados: food.arff1413738635058.pdf
 	\subitem Manhattan
-		\subsubitem Tiempo: 
-  		\subsubitem Fichero de resultados: 
-	\subitem Minkowki k = 7
-		\subsubitem Tiempo: 
-  		\subsubitem Fichero de resultados: 	
+		\subsubitem Tiempo: 2s
+  		\subsubitem Fichero de resultados: food.arff1413738739824.pdf
+	\subitem Minkowski k = 7
+		\subsubitem Tiempo: 2s
+  		\subsubitem Fichero de resultados: food.arff1413738769585.pdf
   \item Average
   	\subitem Euclidean
-  		\subsubitem Tiempo: 
-  		\subsubitem Fichero de resultados: 
+  		\subsubitem Tiempo: 2s
+  		\subsubitem Fichero de resultados: food.arff1413738084408.pdf
 	\subitem Manhattan
-		\subsubitem Tiempo: 
-  		\subsubitem Fichero de resultados: 
-	\subitem Minkowki k = 7
-		\subsubitem Tiempo: 
-  		\subsubitem Fichero de resultados: 	
+		\subsubitem Tiempo: 2s
+  		\subsubitem Fichero de resultados: food.arff1413738360677.pdf
+	\subitem Minkowski k = 7
+		\subsubitem Tiempo: 2s
+  		\subsubitem Fichero de resultados: food.arff1413738418598.pdf	
 \end{itemize}
 
 \subsection{Resultados respecto a otro software}
 
 \subsection{Análisis de resultados}
 
+
 \subsection{Rendimiento del software}
+Con respecto al rendimiento simplemente señalar que la variante aglomerativa
+tarda más que la variante divisiva por el mero hecho de que esta última no
+genera un dendograma al acabar de ejecutarse.
 
 \section{Conclusiones}
 La motivación principal para aplicar técnicas de clustering es agrupar grandes
@@ -352,7 +361,7 @@ dendograma.
 
 \subsection{Alberto Fernández}
 \paragraph{¿Has alcanzado los objetivos que se plantean?\\}
-Si, creo que he alcanzado los objetivos que se plantean para esta practica.
+Sí, creo que he alcanzado los objetivos que se plantean para esta práctica.
 
 \paragraph{¿Te ha resultado de utilidad la tarea planteada?\\}
 Esta tarea me ha resultado de utilidad para ver mis capacidades para afrontar
