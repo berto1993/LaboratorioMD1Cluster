@@ -59,16 +59,15 @@ como puede ser \textbf{Weka}.
  
 \paragraph{Clasificación no-supervisada:\\}
 Los métodos de clasificación en los que los datos de entrenamiento son vectores
-x sin una clase definida.
-\cite{Bishop}, Página 3, 2º Párrafo
+x sin una clase definida.\cite{Bishop}%, Página 3, 2º Párrafo
 
 La clasificación no supervisada tiene como objetivo la agrupación de datos en
 grupos, estas agrupaciones tienen valor por sí mismas y su clasificación no
 tiene interés.para ello emplea la similitud/disimilitud entre los atributos de
 las distintas instancias para poder realizar la “clasificación” sin contar con
 la clase definida que le indique la clasificación correcta o el grado de error
-en las distintas predicciones.\cite{Elements} , Página 486,
-3ºlinea \[\cite{Handbook}, Sección 14.1, 1º Párrafo\]
+en las distintas predicciones.\cite{Elements}% , Página 486,3ºlinea 
+\cite{Handbook}%, Sección 14.1, 1º Párrafo
 
 \subsection{Objetivo}
 El objetivo de esta práctica es el diseño e implementación de un algoritmo de
@@ -164,8 +163,8 @@ En este paquete se agrupan las clases cuya funcionalidad principal es el calculo
 de distancias entre instancias.
 
 \subsubsection{Metrica}
-Esta clase es la encargada de realizar los calculos de distanciasentre
-instancias utilizando distintas metricas:
+Esta clase es la encargada de realizar los cálculos de distancias entre
+instancias utilizando distintas métricas:
 \begin{itemize}
   \item Euclidea
   \item Manhattan
@@ -173,8 +172,8 @@ instancias utilizando distintas metricas:
 \end{itemize}
 
 \subsubsection{Distancia}
-Esta clase es la encargada de realizar los calculos de distancias en conjunto
-con la clase Metrica utilizando distintas metricas:
+Esta clase es la encargada de realizar los cálculos de distancias en conjunto
+con la clase Metrica utilizando distintas métricas:
 \begin{itemize}
   \item Complete
   \item Simple
@@ -183,7 +182,7 @@ con la clase Metrica utilizando distintas metricas:
 
 \subsection{packJerarquico}
 En este paquete se agrupan las clases cuya función es la ejecución de los
-algoritmos de clustering jerarquico y las clases necesarias para almacenar las
+algoritmos de clustering jerárquico y las clases necesarias para almacenar las
 estructuras generadas por los mismos.
 
 \subsubsection{Main}
@@ -208,7 +207,7 @@ Es la encargada de generar nuevos clusters e incluirlos en una nueva iteración,
 tanto uniendo dos clusters como dividiendo uno.
 
 \subsubsection{Cluster}
-Esta clase almacena el numero (nombre) del cluster, las intancias que lo forman,
+Esta clase almacena el numero (nombre) del cluster, las instancias que lo forman,
 su centroide, la iteración en la que se ha creado así como los clusters a partir
 del cual se ha generado.
 
@@ -216,7 +215,7 @@ del cual se ha generado.
 Esta clase almacena la distancia entre dos clusters así como los clusters entre
 los cuales se calculado la distancia.
 
-Es tambien la encargada de calcular la distancia llamando a las clases
+Es también la encargada de calcular la distancia llamando a las clases
 contenidas en el
 \ref{packDistancias}\textit{packDistancias}\ref{packDistancias}.
 
@@ -228,6 +227,7 @@ utilizar en la aplicación.
 Es la clase que almacena el nombre de cada instancia y los atributos que la
 forman, esta aplicación solamente soporta atributos numéricos, por lo que
 solamente se almacenan atributos numéricos.
+
 
 \section{Resultados experimentales}
 
