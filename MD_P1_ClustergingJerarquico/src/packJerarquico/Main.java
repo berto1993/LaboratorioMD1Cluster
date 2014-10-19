@@ -8,6 +8,9 @@ public class Main {
 
 	public static void main(String[] args) 
 	{
+		StopWatch stop = new StopWatch();
+		stop.start();
+		
 		if (args.length == 4 || args.length == 5)
 		{	
 		//	0 - error	
@@ -31,7 +34,11 @@ public class Main {
 		if (top == 0 || distance == 0 || metric == 0)
 			error();
 		else
-			startClustering(args[0] ,top, distance, metric, k);
+			{
+				startClustering(args[0] ,top, distance, metric, k);
+				System.out.println("Tiempo de ejecución:" + stop.getElapsedTimeSecs());
+			}
+		
 		}
 		else
 			error();
