@@ -1,6 +1,6 @@
 \documentclass[11pt, titlepage,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{natbib}
+\usepackage[square,sort,comma,numbers]{natbib}
 \usepackage{hyperref}
 \usepackage{dsfont}
 \usepackage{subfigure}
@@ -16,7 +16,7 @@
 \usepackage{varwidth}
 \usepackage{graphicx}
 \usepackage{parcolumns}
-\usepackage{cite}
+%\usepackage{cite}
 \usepackage{hyperref}
 \usepackage[]{algorithm2e}
 
@@ -59,26 +59,26 @@ como puede ser \textbf{Weka}.
  
 \paragraph{Clasificación no-supervisada:\\}
 Los métodos de clasificación en los que los datos de entrenamiento son vectores
-x sin una clase definida.\cite{Bishop}%, Página 3, 2º Párrafo
+x sin una clase definida.\cite[Página 3, 2º Párrafo]{Bishop} 
+
 
 La clasificación no supervisada tiene como objetivo la agrupación de datos en
 grupos, estas agrupaciones tienen valor por sí mismas y su clasificación no
 tiene interés.para ello emplea la similitud/disimilitud entre los atributos de
 las distintas instancias para poder realizar la “clasificación” sin contar con
 la clase definida que le indique la clasificación correcta o el grado de error
-en las distintas predicciones.\cite{Elements}% , Página 486,3ºlinea 
-\cite{Handbook}%, Sección 14.1, 1º Párrafo
+en las distintas predicciones.\cite[Página 486,3ºlinea]{Elements}  
+\cite[Sección 14.1, 1º Párrafo]{Handbook}
+
 
 \subsection{Objetivo}
 El objetivo de esta práctica es el diseño e implementación de un algoritmo de
 clasificación no supervisada mediante la técnica del Clustering Jerárquico,
 tanto en su variante  como Aglomerativa como Divisiva evitando la utilización de
 librerías de terceros.
-
 \bigskip
-
 Hemos utilizado principalmente los siguientes archivos:
-
+%
 \begin{description}
 \item[color.arff]Este fichero cuenta con 62 instancias y 2001 atributos
 numéricos junto con la clase nominal.
@@ -245,7 +245,26 @@ solamente se almacenan atributos numéricos.
 
 \section{Bibliografía}
 
-\bibliography{bibliografia}
+\begin{thebibliography}{1}
+	
+	\bibitem{Bishop}
+	{\em Pattern Recognition and Machine Learning}.
+	\newblock Springer, 2006.
+	
+	\bibitem{Elements}
+	{\em The Elements of Statistical Learning Data Mining,Inference,and Prediction:
+		Second Edition}.
+	\newblock Springer, 2009.
+	
+	\bibitem{Handbook}
+	{\em Data Mining and Knowledge Discovery Handbook:Second Edition}.
+	\newblock Springer, 2011.
+	
+	\bibitem{Witten}
+	{\em Practical Machine Learning Tools and Techniques}.
+	\newblock Morgan Kaufmann, 2011.
+	
+\end{thebibliography}
 
 \section{Valoración subjetiva}
 \end{document}
